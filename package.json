@@ -1,14 +1,38 @@
 {
   "name": "vue-dat-gui",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "A Vue version of the dat.GUI library",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build --target lib src/main.js",
+    "lint": "vue-cli-service lint",
+    "prepublish": "npm run lint && npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cyrilf/vue-dat-gui.git"
+  },
+  "keywords": [
+    "vue dat gui",
+    "vue",
+    "dat.gui"
+  ],
+  "author": "cyrilf",
+  "bugs": {
+    "url": "https://github.com/cyrilf/vue-dat-gui/issues"
+  },
+  "homepage": "https://github.com/cyrilf/vue-dat-gui#readme",
   "dependencies": {
     "core-js": "^2.6.5",
+    "lodash.assignin": "^4.2.0",
+    "lodash.clamp": "^4.0.3",
+    "lodash.debounce": "^4.0.8",
+    "lodash.isnumber": "^3.0.3",
+    "lodash.isobject": "^3.0.2",
+    "lodash.isstring": "^4.0.1",
+    "lodash.tonumber": "^4.0.3",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -19,6 +43,8 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
@@ -30,7 +56,15 @@
       "plugin:vue/essential",
       "@vue/airbnb"
     ],
-    "rules": {},
+    "rules": {
+      "semi": 0,
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true
+        }
+      ]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
