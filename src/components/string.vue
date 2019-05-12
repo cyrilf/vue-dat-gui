@@ -1,9 +1,7 @@
 <template>
   <li class="control-item string">
     <label ref="label">
-      <span class="label-text">
-        <slot></slot>
-      </span>
+      <span class="label-text">{{text}}</span>
       <div class="control">
         <input type="text" :value="currentValue" @input="handleChange"/>
       </div>
@@ -16,6 +14,7 @@ export default {
   name: 'DatString',
   props: {
     value: String,
+    text: String,
   },
   model: {
     prop: 'value',

@@ -4,9 +4,7 @@
     :style="{ 'border-left-color': currentColor }"
     @mouseleave="onMouseLeave">
     <label>
-      <span class="label-text">
-        <slot></slot>
-      </span>
+      <span class="label-text">{{text}}</span>
       <div class="control" @mouseover="onMouseOver">
         <input
           type="text"
@@ -31,9 +29,8 @@ import 'v-color/dist/index.css'
 export default {
   name: 'DatColor',
   props: {
-    color: {
-      required: true,
-    },
+    color: { required: true },
+    text: String,
   },
   model: {
     prop: 'color',

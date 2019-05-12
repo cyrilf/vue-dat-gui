@@ -1,8 +1,8 @@
 <template>
   <li :class="['folder', {'closed': close}]">
     <div ref="label" class="group">
-        <div class='title' @click="handleClick">
-            {{title}}
+        <div class='text' @click="handleClick">
+            {{text}}
         </div>
         <ul>
             <slot></slot>
@@ -15,7 +15,7 @@
 export default {
   name: 'DatFolder',
   props: {
-    title: String,
+    text: String,
     closed: Boolean,
   },
   data() {
@@ -35,7 +35,7 @@ export default {
 @import "../assets/base.scss";
 
 .vue-dat-gui li.folder {
-  .title {
+  .text {
     font-weight: bold;
     user-select: none;
     cursor: pointer;

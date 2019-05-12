@@ -1,9 +1,7 @@
 <template>
   <li class="control-item select">
     <label ref="label">
-      <span class="label-text">
-        <slot></slot>
-      </span>
+      <span class="label-text">{{text}}</span>
       <div class="control">
         <select :value="currentValue" @change="handleChange" class="w-100">
           <option
@@ -24,6 +22,7 @@ export default {
   props: {
     value: [String, Number],
     items: Array,
+    text: String,
   },
   model: {
     prop: 'value',
