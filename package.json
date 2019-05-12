@@ -8,7 +8,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib src/main.js",
     "lint": "vue-cli-service lint",
-    "prepublish": "npm run lint && npm run build"
+    "prepare": "npm run lint && npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,13 +26,10 @@
   "homepage": "https://github.com/cyrilf/vue-dat-gui#readme",
   "dependencies": {
     "core-js": "^2.6.5",
-    "lodash.assignin": "^4.2.0",
     "lodash.clamp": "^4.0.3",
-    "lodash.debounce": "^4.0.8",
     "lodash.isnumber": "^3.0.3",
-    "lodash.isobject": "^3.0.2",
-    "lodash.isstring": "^4.0.1",
     "lodash.tonumber": "^4.0.3",
+    "v-color": "^1.1.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {

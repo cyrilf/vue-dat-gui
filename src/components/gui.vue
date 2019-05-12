@@ -1,10 +1,10 @@
 <template>
-  <div :class="['vue-dat-gui',{'closed': status}]">
-    <div class="dg main">
+  <div :class="['vue-dat-gui', {'closed': status}]">
+    <div class="group group--main">
       <ul>
         <slot></slot>
       </ul>
-      <div class='close-button' @click="handleClick">
+      <div class='button' @click="onClick">
         {{title}}
       </div>
     </div>
@@ -14,6 +14,20 @@
 <script>
 export default {
   name: 'DatGui',
+  props: {
+    openText: {
+      type: String,
+      default: 'Open Controls',
+    },
+    closeText: {
+      type: String,
+      default: 'Close Controls',
+    },
+    closed: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       status: this.closed,
@@ -24,22 +38,8 @@ export default {
       return this.status ? this.openText : this.closeText
     },
   },
-  props: {
-    openText: {
-      type: String,
-      default: 'Close Controls',
-    },
-    closeText: {
-      type: String,
-      default: 'Open Controls',
-    },
-    closed: {
-      type: Boolean,
-      default: false,
-    },
-  },
   methods: {
-    handleClick() {
+    onClick() {
       this.status = !this.status
     },
   },
@@ -71,7 +71,7 @@ export default {
     }
   }
 
-  .close-button {
+  .button {
     border: 0;
     line-height: $button-height - 1;
     height: $button-height;
@@ -82,7 +82,7 @@ export default {
       background-color: #111;
     }
   }
-  .dg {
+  .group {
     margin: 0;
     padding: 0;
     color: #eee;
@@ -102,7 +102,7 @@ export default {
       padding: 0 4px 0 5px;
       border-bottom: 1px solid $border-color;
     }
-    &.main {
+    &.group--main {
       &::-webkit-scrollbar {
         width: 5px;
         background: $background-color;
@@ -136,19 +136,6 @@ export default {
       text-overflow: ellipsis;
       user-select: none;
       text-align: left;
-    }
-    input[type="text"],
-    input[type="number"] {
-      background: $input-color;
-      border: 1px solid $background-color;
-      border-radius: 0;
-      padding: 4px;
-      margin: 0;
-      outline: none;
-      font-size: inherit;
-      &::-ms-clear {
-        display: none;
-      }
     }
   }
   .c {

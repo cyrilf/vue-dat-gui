@@ -1,27 +1,18 @@
 <template>
-  <label class="label-text" ref="label" @click="handleClick">
-    <slot></slot>
-  </label>
+  <li class="cr button">
+    <label class="label-text" ref="label" @click="handleClick">
+      <slot></slot>
+    </label>
+  </li>
 </template>
 
 <script>
-import liMixin from './mixin'
-
 export default {
   name: 'DatButton',
-  data() {
-    return {
-      liClassName: 'cr button',
-    }
-  },
-  mixins: [liMixin],
   methods: {
     handleClick(evt) {
       this.$emit('click', evt)
     },
-  },
-  mounted() {
-    this.checkParentNode()
   },
 }
 </script>

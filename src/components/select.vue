@@ -1,24 +1,24 @@
 <template>
-  <label ref="label">
-    <span class="label-text">
-      <slot></slot>
-    </span>
-    <div class="c">
-      <select :value="currentValue" @change="handleChange">
-        <option
-          v-for="item in items"
-          :key="item.value"
-          :value="item.value">
-          {{item.name}}
-        </option>
-      </select>
-    </div>
-  </label>
+  <li class="cr select">
+    <label ref="label">
+      <span class="label-text">
+        <slot></slot>
+      </span>
+      <div class="c">
+        <select :value="currentValue" @change="handleChange">
+          <option
+            v-for="item in items"
+            :key="item.value"
+            :value="item.value">
+            {{item.name}}
+          </option>
+        </select>
+      </div>
+    </label>
+  </li>
 </template>
 
 <script>
-import liMixin from './mixin'
-
 export default {
   name: 'DatSelect',
   props: ['value', 'items'],
@@ -29,7 +29,6 @@ export default {
   data() {
     return {
       currentValue: this.value || '',
-      liClassName: 'cr select',
     }
   },
   watch: {
@@ -37,15 +36,11 @@ export default {
       this.currentValue = val
     },
   },
-  mixins: [liMixin],
   methods: {
     handleChange(evt) {
       this.currentValue = evt.target.value
       this.$emit('change', evt.target.value)
     },
-  },
-  mounted() {
-    this.checkParentNode()
   },
 }
 </script>

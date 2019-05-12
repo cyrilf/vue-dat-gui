@@ -3,7 +3,6 @@
     ref="slider"
     class="slider"
     :style="{width: `${width}px`,'background-size': `${bgWidth}% 100%`}"
-    @click="handleClick"
     @mousedown="handleMouseDown"
   />
 </template>
@@ -43,9 +42,6 @@ export default {
     },
   },
   methods: {
-    handleClick(evt) {
-      evt.preventDefault()
-    },
     handleMouseDown(evt) {
       this.updateState(evt.pageX)
 
@@ -54,7 +50,6 @@ export default {
     },
     handleMouseMove(evt) {
       this.updateState(evt.pageX)
-      evt.preventDefault()
     },
     handleMouseUp(evt) {
       this.updateState(evt.pageX)

@@ -1,17 +1,17 @@
 <template>
-  <label ref="label">
-    <span class="label-text">
-      <slot></slot>
-    </span>
-    <div class="c">
-      <input type="checkbox" :checked="currentValue" @change="handleChange" />
-    </div>
-  </label>
+  <li class="cr boolean">
+    <label ref="label">
+      <span class="label-text">
+        <slot></slot>
+      </span>
+      <div class="c">
+        <input type="checkbox" :checked="currentValue" @change="handleChange" />
+      </div>
+    </label>
+  </li>
 </template>
 
 <script>
-import liMixin from './mixin'
-
 export default {
   name: 'DatBoolean',
   props: {
@@ -24,7 +24,6 @@ export default {
   data() {
     return {
       currentValue: this.checked,
-      liClassName: 'cr boolean',
     }
   },
   watch: {
@@ -32,15 +31,11 @@ export default {
       this.currentValue = val
     },
   },
-  mixins: [liMixin],
   methods: {
     handleChange() {
       this.currentValue = !this.currentValue
       this.$emit('change', this.currentValue)
     },
-  },
-  mounted() {
-    this.checkParentNode()
   },
 }
 </script>

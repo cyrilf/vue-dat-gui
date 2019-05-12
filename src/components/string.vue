@@ -1,20 +1,22 @@
 <template>
-  <label ref="label">
-    <span class="label-text">
-      <slot></slot>
-    </span>
-    <div class="c">
-      <input type="text" :value="currentValue" @change="handleChange" @keyup="handleChange" />
-    </div>
-  </label>
+  <li class="cr string">
+    <label ref="label">
+      <span class="label-text">
+        <slot></slot>
+      </span>
+      <div class="c">
+        <input type="text" :value="currentValue" @input="handleChange"/>
+      </div>
+    </label>
+  </li>
 </template>
 
 <script>
-import liMixin from './mixin'
-
 export default {
   name: 'DatString',
-  props: ['value'],
+  props: {
+    value: String,
+  },
   model: {
     prop: 'value',
     event: 'change',
@@ -22,7 +24,6 @@ export default {
   data() {
     return {
       currentValue: this.value || '',
-      liClassName: 'cr string',
     }
   },
   watch: {
@@ -30,15 +31,11 @@ export default {
       this.currentValue = val
     },
   },
-  mixins: [liMixin],
   methods: {
     handleChange(evt) {
       this.currentValue = evt.target.value
       this.$emit('change', this.currentValue)
     },
-  },
-  mounted() {
-    this.checkParentNode()
   },
 }
 </script>
@@ -50,6 +47,16 @@ export default {
   border-left: $border-left-size solid $string-color;
 
   input[type="text"] {
+    background: $input-color;
+    border: 1px solid $background-color;
+    border-radius: 0;
+    padding: 4px;
+    margin: 0;
+    outline: none;
+    font-size: inherit;
+    &::-ms-clear {
+      display: none;
+    }
     color: $string-color;
     width: 100%;
 

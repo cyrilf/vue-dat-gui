@@ -1,5 +1,6 @@
 <template>
-    <div ref="label" class="dg">
+  <li :class="['folder', {'closed': closed}]">
+    <div ref="label" class="group">
         <div class='title' @click="handleClick">
             {{title}}
         </div>
@@ -7,11 +8,10 @@
             <slot></slot>
         </ul>
     </div>
+  </li>
 </template>
 
 <script>
-import liMixin from './mixin'
-
 export default {
   name: 'DatFolder',
   props: {
@@ -23,22 +23,12 @@ export default {
       close: this.closed,
     }
   },
-  computed: {
-    liClassName() {
-      if (this.close) return 'folder closed'
-      return 'folder'
-    },
-  },
-  mixins: [liMixin],
   methods: {
     handleClick() {
       this.close = !this.close
       const li = this.$refs.label.parentNode
       li.classList[this.close ? 'add' : 'remove']('closed')
     },
-  },
-  mounted() {
-    this.checkParentNode()
   },
 }
 </script>
