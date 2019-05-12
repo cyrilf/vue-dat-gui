@@ -1,20 +1,23 @@
 <template>
-  <li class="cr color" :style="{ 'border-left-color': currentColor }" @mouseleave="onMouseLeave">
-    <label ref="label">
+  <li
+    class="control-item color"
+    :style="{ 'border-left-color': currentColor }"
+    @mouseleave="onMouseLeave">
+    <label>
       <span class="label-text">
         <slot></slot>
       </span>
-      <div class="c" @mouseover="onMouseOver">
+      <div class="control" @mouseover="onMouseOver">
         <input
           type="text"
           ref="inputColor"
           :value="currentColor"
           :style="{ 'background-color': currentColor, 'color': inputColor }"
-          readonly
-        />
+          readonly/>
         <color-picker
           v-show="showColorPicker"
           :color="currentColor"
+          class="color-picker"
           @change="onChange"/>
       </div>
     </label>
@@ -72,7 +75,6 @@ export default {
 
     onKeyDown(event) {
       if (event.key === 'Enter' || event.keyCode === 13) {
-        this.$refs.inputColor.blur()
         this.showColorPicker = false
       }
     },
@@ -83,21 +85,12 @@ export default {
 <style lang="scss">
 @import "../assets/base.scss";
 
-.vue-dat-gui .cr.color {
-  border-left: $border-left-size solid $background-color;
-
+.vue-dat-gui .control-item.color {
   input[type="text"] {
     text-align: center;
-    width: 100%;
-    border: 1px solid $background-color;
-    border-radius: 0;
-    padding: 4px;
-    margin: 0;
-    outline: none;
-    font-size: inherit;
   }
 
-  .c > div {
+  .control > div {
     position: absolute;
     right: 0;
     width: 200px;

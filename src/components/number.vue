@@ -1,26 +1,26 @@
 <template>
-  <li class="cr number">
+  <li class="control-item number">
     <label ref="label">
       <span class="label-text">
         <slot></slot>
       </span>
-      <div ref="content" class="c">
+      <div class="control">
         <slider
           v-show="hasSlider"
+          class="slider"
           :min="minValue"
           :max="maxValue"
-          :width="sliderWidth"
           :value="currentValue"
           @updateState="sanitizeNumber">
         </slider>
         <input
           type="number"
           ref="input"
+          class="input"
           :min="minValue"
           :max="maxValue"
           :step="stepValue"
           v-model="currentValue"
-          :style="{'width': `${inputWidth}px`}"
           @change="handleChange"
         />
       </div>
@@ -29,8 +29,9 @@
 </template>
 
 <script>
-import toNumber from 'lodash.tonumber'
 import isNumber from 'lodash.isnumber'
+import toNumber from 'lodash.tonumber'
+import clamp from 'lodash.clamp'
 import Slider from './number/slider.vue'
 
 export default {
@@ -47,7 +48,6 @@ export default {
       type: [Number, String],
       required: true,
     },
-    width: Number,
   },
   model: {
     prop: 'value',
@@ -64,11 +64,9 @@ export default {
     }
 
     return {
-      currentValue: 0,
+      currentValue: toNumber(this.value),
       minValue,
       maxValue,
-      inputWidth: 0,
-      sliderWidth: 0,
     }
   },
   computed: {
@@ -87,18 +85,13 @@ export default {
     },
   },
   watch: {
-    value: {
-      handler(number) { this.currentValue = toNumber(number) },
-      immediate: true,
-    },
+    value(number) { this.currentValue = toNumber(number) },
   },
   methods: {
     sanitizeNumber(number) {
       const [min, max, step] = [this.minValue, this.maxValue, this.stepValue]
 
-      let safeNumber = toNumber(number)
-      if (safeNumber < min) { safeNumber = min }
-      if (safeNumber > max) { safeNumber = max }
+      let safeNumber = clamp(toNumber(number), min, max)
 
       if (step !== 0 && Number.isFinite(step)) {
         safeNumber = Math.round(safeNumber / step) * step
@@ -110,47 +103,19 @@ export default {
       this.sanitizeNumber(evt.target.value)
     },
   },
-  mounted() {
-    const controlsWidth = this.$refs.content.clientWidth
-    if (this.hasSlider) {
-      this.inputWidth = this.width > 0 ? this.width : Math.round(controlsWidth / 3)
-      this.sliderWidth = controlsWidth - this.inputWidth
-    } else {
-      this.inputWidth = controlsWidth
-    }
-  },
 }
 </script>
 
 <style lang="scss">
-@import "../assets/base.scss";
-
-.vue-dat-gui .cr.number {
-  border-left: $border-left-size solid $number-color;
-
-  .c {
+.vue-dat-gui .control-item.number {
+  .control {
     display: inline-flex;
-  }
 
-  input[type="number"] {
-    background: $input-color;
-    border: 1px solid $background-color;
-    border-radius: 0;
-    padding: 4px;
-    margin: 0;
-    outline: none;
-    font-size: inherit;
-    &::-ms-clear {
-      display: none;
+    .slider {
+      flex: 3;
     }
-    color: $number-color;
-
-    &:hover {
-      background: lighten($input-color, $hover-lighten);
-    }
-    &:focus {
-      background: lighten($input-color, $active-lighten);
-      color: #fff;
+    .input {
+      flex: 1;
     }
   }
 

@@ -1,11 +1,11 @@
 <template>
-  <li class="cr boolean">
+  <li class="control-item boolean">
     <label ref="label">
       <span class="label-text">
         <slot></slot>
       </span>
-      <div class="c">
-        <input type="checkbox" :checked="currentValue" @change="handleChange" />
+      <div class="control">
+        <input type="checkbox" :checked="currentValue" @change="handleChange"/>
       </div>
     </label>
   </li>
@@ -39,18 +39,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-@import "../assets/base.scss";
-
-.vue-dat-gui .cr.boolean {
-  position: relative;
-  border-left: $border-left-size solid $boolean-color;
-  &:hover {
-    background: #111;
-  }
-  label {
-    cursor: pointer;
-  }
-}
-</style>

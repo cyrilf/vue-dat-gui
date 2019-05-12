@@ -21,15 +21,12 @@ export default {
   },
   data() {
     return {
-      currentValue: 0,
+      currentValue: toNumber(this.value) || 0,
     }
   },
   watch: {
-    value: {
-      handler(val) {
-        this.currentValue = toNumber(val)
-      },
-      immediate: true,
+    value(val) {
+      this.currentValue = toNumber(val)
     },
   },
   computed: {
@@ -48,9 +45,7 @@ export default {
       window.addEventListener('mousemove', this.handleMouseMove)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
-    handleMouseMove(evt) {
-      this.updateState(evt.pageX)
-    },
+    handleMouseMove(evt) { this.updateState(evt.pageX) },
     handleMouseUp(evt) {
       this.updateState(evt.pageX)
 
@@ -60,10 +55,10 @@ export default {
     updateState(pageX) {
       const rect = this.$refs.slider.getBoundingClientRect()
       const x = pageX - rect.left
-      const w = rect.right - rect.left
-      const val = this.min + clamp(x / w, 0, 1) * (this.max - this.min)
+      const width = rect.right - rect.left
+      const value = this.min + clamp(x / width, 0, 1) * (this.max - this.min)
 
-      this.$emit('updateState', val)
+      this.$emit('updateState', value)
     },
   },
 }
@@ -73,14 +68,14 @@ export default {
 @import "../../assets/base.scss";
 
 .vue-dat-gui .slider {
+  height: 25px;
   display: block;
   position: relative;
+  cursor: ew-resize;
   border: 1px solid $background-color;
-  background-color: $input-color;
+  background-color: $input-background-color;
   background-image: linear-gradient(90deg, $number-color, $number-color);
   background-size: 0% 100%;
   background-repeat: no-repeat;
-  cursor: ew-resize;
-  height: 25px;
 }
 </style>

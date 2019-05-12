@@ -1,12 +1,10 @@
 <template>
-  <div :class="['vue-dat-gui', {'closed': status}]">
+  <div :class="['vue-dat-gui', {'closed': isClosed}]">
     <div class="group group--main">
       <ul>
         <slot></slot>
       </ul>
-      <div class='button' @click="onClick">
-        {{title}}
-      </div>
+      <div class='toggle-button' @click="toggleOpen">{{title}}</div>
     </div>
   </div>
 </template>
@@ -30,17 +28,17 @@ export default {
   },
   data() {
     return {
-      status: this.closed,
+      isClosed: this.closed,
     }
   },
   computed: {
     title() {
-      return this.status ? this.openText : this.closeText
+      return this.isClosed ? this.openText : this.closeText
     },
   },
   methods: {
-    onClick() {
-      this.status = !this.status
+    toggleOpen() {
+      this.isClosed = !this.isClosed
     },
   },
 }
@@ -51,48 +49,34 @@ export default {
 
 .vue-dat-gui {
   position: fixed;
-  right: 16px;
   top: 0;
-  width: 240px;
+  right: 20px;
+  width: 245px;
   font-size: 12px;
-  font-family: "Lucida Grande", sans-serif;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: transparent;
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
+  font-family: sans-serif;
+  color: $color;
+
   &.closed {
     ul {
       display: none;
     }
   }
 
-  .button {
-    border: 0;
+  .toggle-button {
     line-height: $button-height - 1;
     height: $button-height;
     cursor: pointer;
-    text-align: center;
-    background-color: #000;
+    background-color: $background-color;
     &:hover {
-      background-color: #111;
+      background-color: lighten($background-color, $hover-lighten);
     }
   }
+
   .group {
-    margin: 0;
-    padding: 0;
-    color: #eee;
     overflow: hidden;
     ul {
-      list-style: none;
       margin: 0;
       padding: 0;
-      width: 100%;
-      clear: both;
     }
     li:not(.folder) {
       cursor: auto;
@@ -103,48 +87,106 @@ export default {
       border-bottom: 1px solid $border-color;
     }
     &.group--main {
-      &::-webkit-scrollbar {
-        width: 5px;
-        background: $background-color;
-      }
-      &::-webkit-scrollbar-corner {
-        height: 0;
-        display: none;
-      }
-      &::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background: lighten($background-color, 30%);
+      > ul {
+        max-height: 50vh;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          width: 5px;
+          background: $background-color;
+        }
+        &::-webkit-scrollbar-corner {
+          height: 0;
+          display: none;
+        }
+        &::-webkit-scrollbar-thumb {
+          border-radius: 5px;
+          background: lighten($background-color, 30%);
+        }
       }
     }
   }
-  .cr {
-    display: block;
+
+  .control-item {
     background-color: $background-color;
-    user-select: none;
+    border-left: $border-left-size solid;
+
+    &.boolean {
+      border-left-color: $boolean-color;
+    }
+    &.button {
+      border-left-color: $button-color;
+    }
+    &.number {
+      border-left-color: $number-color;
+    }
+    &.select {
+      border-left-color: $select-color;
+    }
+    &.string {
+      border-left-color: $string-color;
+    }
+    &.color {
+      border-left-color: $background-color;
+    }
+
+    &.boolean, &.button {
+      &:hover {
+        background: #111;
+      }
+      label {
+        cursor: pointer;
+      }
+    }
+
     label {
       display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      width: 100%;
       padding: 0 0 0 5px;
     }
     .label-text {
       width: 40%;
-      min-width: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      user-select: none;
       text-align: left;
     }
-  }
-  .c {
-    float: left;
-    width: 60%;
-  }
-  .c:hover .selector,
-  .selector.drag {
-    display: block;
+
+    .control {
+      float: left;
+      width: 60%;
+
+      > input[type="text"], > input[type="number"] {
+        background: $input-background-color;
+        border: 1px solid $background-color;
+        border-radius: 0;
+        width: 100%;
+        padding: 4px;
+        margin: 0;
+        outline: none;
+        font-size: inherit;
+        &::-ms-clear {
+          display: none;
+        }
+
+        &:hover {
+          background: lighten($input-background-color, $hover-lighten);
+        }
+        &:focus {
+          background: lighten($input-background-color, $active-lighten);
+          color: #fff;
+        }
+      }
+      > input[type="text"] {
+        color: $string-color;
+      }
+      > input[type="number"] {
+        color: $number-color;
+      }
+    }
+    .control:hover .selector,
+    .selector.drag {
+      display: block;
+    }
   }
 }
 </style>

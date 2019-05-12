@@ -1,5 +1,5 @@
 <template>
-  <li :class="['folder', {'closed': closed}]">
+  <li :class="['folder', {'closed': close}]">
     <div ref="label" class="group">
         <div class='title' @click="handleClick">
             {{title}}
@@ -26,8 +26,6 @@ export default {
   methods: {
     handleClick() {
       this.close = !this.close
-      const li = this.$refs.label.parentNode
-      li.classList[this.close ? 'add' : 'remove']('closed')
     },
   },
 }
@@ -37,13 +35,9 @@ export default {
 @import "../assets/base.scss";
 
 .vue-dat-gui li.folder {
-  display: block;
-  padding: 0;
-
   .title {
     font-weight: bold;
     user-select: none;
-    display: block;
     cursor: pointer;
     padding: 5px 5px 5px 16px;
     background: $folder-open;
