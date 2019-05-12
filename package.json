@@ -2,7 +2,7 @@
   "name": "vue-dat-gui",
   "version": "1.1.0",
   "description": "A Vue version of the dat.GUI library",
-  "main": "index.js",
+  "main": "./dist/vue-dat-gui.common.js",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
