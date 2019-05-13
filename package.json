@@ -1,12 +1,13 @@
 {
   "name": "vue-dat-gui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Vue version of the dat.GUI library",
   "main": "./dist/vue-dat-gui.common.js",
   "license": "MIT",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib src/main.js",
+    "build": "npm run build-lib && npm run copy-demo",
+    "build-lib": "vue-cli-service build --target lib src/main.js",
+    "copy-demo": "node ./scripts/copyDemo",
     "lint": "vue-cli-service lint",
     "prepare": "npm run lint && npm run build"
   },
@@ -27,7 +28,6 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "lodash.clamp": "^4.0.3",
-    "lodash.isnumber": "^3.0.3",
     "lodash.tonumber": "^4.0.3",
     "v-color": "^1.1.2",
     "vue": "^2.6.10"
@@ -66,6 +66,10 @@
       "parser": "babel-eslint"
     }
   },
+  "eslintIgnore": [
+    "dist",
+    "public/index.html"
+  ],
   "postcss": {
     "plugins": {
       "autoprefixer": {}
