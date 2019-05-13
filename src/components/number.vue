@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import isNumber from 'lodash.isnumber'
 import toNumber from 'lodash.tonumber'
 import clamp from 'lodash.clamp'
 import Slider from './number/slider.vue'
@@ -54,8 +53,8 @@ export default {
   },
   components: { Slider },
   data() {
-    let minValue = isNumber(this.min) ? this.min : Number.NEGATIVE_INFINITY
-    let maxValue = isNumber(this.max) ? this.max : Number.POSITIVE_INFINITY
+    let minValue = typeof this.min === 'number' ? this.min : Number.NEGATIVE_INFINITY
+    let maxValue = typeof this.max === 'number' ? this.max : Number.POSITIVE_INFINITY
     if (minValue > maxValue) {
       [minValue, maxValue] = [maxValue, minValue]
       process.env.NODE_ENV !== 'production'

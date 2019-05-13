@@ -63,6 +63,7 @@ export default {
   }
 
   .toggle-button {
+    text-align: center;
     line-height: $button-height - 1;
     height: $button-height;
     cursor: pointer;
@@ -113,6 +114,7 @@ export default {
 
     &.boolean {
       border-left-color: $boolean-color;
+      .control { text-align: center; }
     }
     &.button {
       border-left-color: $button-color;

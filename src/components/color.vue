@@ -47,6 +47,7 @@ export default {
   },
   computed: {
     inputColor() {
+      if (this.color.length !== 7 || this.color[0] !== '#') { return 'black' }
       const r = parseInt(this.currentColor.substr(1, 2), 16)
       const g = parseInt(this.currentColor.substr(3, 2), 16)
       const b = parseInt(this.currentColor.substr(5, 2), 16)
