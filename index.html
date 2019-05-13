@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="favicon.ico">
+  <title>vue-dat-gui</title>
+  <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+  <script src="./vue-dat-gui.umd.js"></script><!-- relative to the dist folder -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'sans-serif';
+    }
+
+    .full {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .input-title {
+      font-size: 40px;
+      text-align: center;
+    }
+
+    .input-title:focus {
+      outline-color: #077d43;
+    }
+
+    .input-note {
+      font-size: 11px;
+      color: #666;
+      font-style: italic;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .github {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      color: white;
+      background-color: #077d43;
+      padding: 7px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but vue-dat-gui doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <script type="x-template" id="vue-dat-gui-demo">
+    <div class="full" :style="{'background-color': background}">
+      <h1 :style="{color: titleColor, 'font-size': `${titleFontSize}px`}">{{title}}</h1>
+      <img :src="pictureUrl" alt="vue-dat-gui demo" :style="pictureStyle" v-show="showPicture"/>
+      <div>
+        <input v-model="title" class="input-title"/>
+        <div class="input-note">Showcase of the 2-way data-binding</div>
+      </div>
+
+      <dat-gui closeText="Close controls" openText="Open controls">
+        <dat-color v-model="background" label="Background"/>
+        <dat-color v-model="titleColor" label="Title Color"/>
+        <dat-number v-model="titleFontSize" label="Title font-size"/>
+        <dat-string v-model="title" label="Title"/>
+        <dat-button @click="triggerAlert" label="Trigger alert"/>
+        <dat-folder label="Picture">
+          <dat-select v-model="pictureUrl" :items="pictures" label="Picture"/>
+          <dat-boolean v-model="showPicture" label="Show Picture"/>
+          <dat-button @click="nextPicture" label="Next picture"/>
+          <dat-folder label="Box shadow">
+            <dat-number v-model="boxShadow.offsetX" :min="-100" :max="100" :step="1" label="Offset X"/>
+            <dat-number v-model="boxShadow.offsetY" :min="-100" :max="100" :step="1" label="Offset Y"/>
+            <dat-number v-model="boxShadow.blurRadius" :min="0" :max="100" :step="1" label="Blur radius"/>
+            <dat-number v-model="boxShadow.spreadRadius" :min="0" :max="30" :step="1" label="Spread radius"/>
+            <dat-color v-model="boxShadow.color" label="Color"/>
+          </dat-folder>
+        </dat-folder>
+      </dat-gui>
+      <a class="github" href="https://github.com/cyrilf/vue-dat-gui/blob/master/public/index.html">View on Github</a>
+    </div>
+  </script>
+  <script>
+    new Vue({
+      el: '#app',
+      template: '#vue-dat-gui-demo',
+      data() {
+        const pictures = [
+          { name: 'forest', value: 'https://images.unsplash.com/photo-1516214104703-d870798883c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80' },
+          { name: 'mountain', value: 'https://images.unsplash.com/photo-1526080676457-4544bf0ebba9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80' },
+          { name: 'beach', value: 'https://images.unsplash.com/photo-1520942702018-0862200e6873?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80' },
+        ]
+
+        return {
+          background: '#cdeecc',
+          titleColor: '#077d43',
+          titleFontSize: 75,
+          title: 'vue-dat-gui',
+          showPicture: true,
+          pictures,
+          pictureUrl: pictures[0].value,
+          boxShadow: {
+            offsetX: 27,
+            offsetY: 27,
+            blurRadius: 75,
+            spreadRadius: 2,
+            color: 'rgba(3, 23, 6, 1)',
+          },
+        }
+      },
+      computed: {
+        pictureStyle() {
+          const { offsetX, offsetY, blurRadius, spreadRadius, color } = this.boxShadow
+          return {
+            'box-shadow': `${offsetX}px ${offsetY}px ${blurRadius}px ${spreadRadius}px ${color}`,
+          }
+        },
+      },
+      methods: {
+        triggerAlert() {
+          alert('Yeah, you pressed it!')
+        },
+        nextPicture() {
+          const currentIndex = this.pictures.findIndex(picture => picture.value === this.pictureUrl)
+          const nextIndex = (currentIndex + 1) % this.pictures.length
+          this.pictureUrl = this.pictures[nextIndex].value
+        }
+      }
+    })
+  </script>
+</body>
+</html>
