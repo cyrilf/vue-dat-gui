@@ -65,36 +65,36 @@
   </noscript>
   <div id="app"></div>
   <script type="x-template" id="vue-dat-gui-demo">
-      <div class="full" :style="{'background-color': background}">
-        <h1 :style="{color: titleColor, 'font-size': `${titleFontSize}px`}">{{title}}</h1>
-        <img :src="pictureUrl" alt="vue-dat-gui demo" :style="pictureStyle" v-show="showPicture"/>
-        <div>
-          <input v-model="title" class="input-title"/>
-          <div class="input-note">Showcase of the 2-way data-binding</div>
-        </div>
-
-        <dat-gui closeText="Close controls" openText="Open controls">
-          <dat-color v-model="background" text="Background"/>
-          <dat-color v-model="titleColor" text="Title Color"/>
-          <dat-number v-model="titleFontSize" text="Title font-size"/>
-          <dat-string v-model="title" text="Title"/>
-          <dat-button @click="triggerAlert" text="Trigger alert"/>
-          <dat-folder text="Picture">
-            <dat-select v-model="pictureUrl" :items="pictures" text="Picture"/>
-            <dat-boolean v-model="showPicture" text="Show Picture"/>
-            <dat-button @click="nextPicture" text="Next picture"/>
-            <dat-folder text="Box shadow">
-              <dat-number v-model="boxShadow.offsetX" :min="-100" :max="100" :step="1" text="Offset X"/>
-              <dat-number v-model="boxShadow.offsetY" :min="-100" :max="100" :step="1" text="Offset Y"/>
-              <dat-number v-model="boxShadow.blurRadius" :min="0" :max="100" :step="1" text="Blur radius"/>
-              <dat-number v-model="boxShadow.spreadRadius" :min="0" :max="30" :step="1" text="Spread radius"/>
-              <dat-color v-model="boxShadow.color" text="Color"/>
-            </dat-folder>
-          </dat-folder>
-        </dat-gui>
-        <a class="github" href="https://github.com/cyrilf/vue-dat-gui/blob/master/public/index.html">View on Github</a>
+    <div class="full" :style="{'background-color': background}">
+      <h1 :style="{color: titleColor, 'font-size': `${titleFontSize}px`}">{{title}}</h1>
+      <img :src="pictureUrl" alt="vue-dat-gui demo" :style="pictureStyle" v-show="showPicture"/>
+      <div>
+        <input v-model="title" class="input-title"/>
+        <div class="input-note">Showcase of the 2-way data-binding</div>
       </div>
-      </script>
+
+      <dat-gui closeText="Close controls" openText="Open controls">
+        <dat-color v-model="background" label="Background"/>
+        <dat-color v-model="titleColor" label="Title Color"/>
+        <dat-number v-model="titleFontSize" label="Title font-size"/>
+        <dat-string v-model="title" label="Title"/>
+        <dat-button @click="triggerAlert" label="Trigger alert"/>
+        <dat-folder label="Picture">
+          <dat-select v-model="pictureUrl" :items="pictures" label="Picture"/>
+          <dat-boolean v-model="showPicture" label="Show Picture"/>
+          <dat-button @click="nextPicture" label="Next picture"/>
+          <dat-folder label="Box shadow">
+            <dat-number v-model="boxShadow.offsetX" :min="-100" :max="100" :step="1" label="Offset X"/>
+            <dat-number v-model="boxShadow.offsetY" :min="-100" :max="100" :step="1" label="Offset Y"/>
+            <dat-number v-model="boxShadow.blurRadius" :min="0" :max="100" :step="1" label="Blur radius"/>
+            <dat-number v-model="boxShadow.spreadRadius" :min="0" :max="30" :step="1" label="Spread radius"/>
+            <dat-color v-model="boxShadow.color" label="Color"/>
+          </dat-folder>
+        </dat-folder>
+      </dat-gui>
+      <a class="github" href="https://github.com/cyrilf/vue-dat-gui/blob/master/public/index.html">View on Github</a>
+    </div>
+  </script>
   <script>
     new Vue({
       el: '#app',

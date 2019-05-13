@@ -4,7 +4,7 @@
     :style="{ 'border-left-color': currentColor }"
     @mouseleave="onMouseLeave">
     <label>
-      <span class="label-text">{{text}}</span>
+      <span class="label-text">{{label}}</span>
       <div class="control" @mouseover="onMouseOver">
         <input
           type="text"
@@ -30,7 +30,7 @@ export default {
   name: 'DatColor',
   props: {
     color: { required: true },
-    text: String,
+    label: String,
   },
   model: {
     prop: 'color',

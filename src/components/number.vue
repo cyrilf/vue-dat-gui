@@ -1,7 +1,7 @@
 <template>
   <li class="control-item number">
     <label ref="label">
-      <span class="label-text">{{text}}</span>
+      <span class="label-text">{{label}}</span>
       <div class="control">
         <slider
           v-show="hasSlider"
@@ -45,7 +45,7 @@ export default {
       type: [Number, String],
       required: true,
     },
-    text: String,
+    label: String,
   },
   model: {
     prop: 'value',

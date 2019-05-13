@@ -1,7 +1,7 @@
 <template>
   <li class="control-item boolean">
     <label ref="label">
-      <span class="label-text">{{text}}</span>
+      <span class="label-text">{{label}}</span>
       <div class="control">
         <input type="checkbox" :checked="currentValue" @change="handleChange"/>
       </div>
@@ -14,7 +14,7 @@ export default {
   name: 'DatBoolean',
   props: {
     checked: Boolean,
-    text: String,
+    label: String,
   },
   model: {
     prop: 'checked',

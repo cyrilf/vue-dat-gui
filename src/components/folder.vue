@@ -2,7 +2,7 @@
   <li :class="['folder', {'closed': close}]">
     <div ref="label" class="group">
         <div class='text' @click="handleClick">
-            {{text}}
+            {{label}}
         </div>
         <ul>
             <slot></slot>
@@ -15,7 +15,7 @@
 export default {
   name: 'DatFolder',
   props: {
-    text: String,
+    label: String,
     closed: Boolean,
   },
   data() {

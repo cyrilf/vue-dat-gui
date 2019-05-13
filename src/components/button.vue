@@ -1,7 +1,7 @@
 <template>
   <li class="control-item button">
     <label class="w-100" ref="label" @click="handleClick">
-      {{text}}
+      {{label}}
     </label>
   </li>
 </template>
@@ -10,7 +10,7 @@
 export default {
   name: 'DatButton',
   props: {
-    text: String,
+    label: String,
   },
   methods: {
     handleClick(evt) { this.$emit('click', evt) },
