@@ -1,3 +1,5 @@
+# vue-dat-gui
+
 ![vue-dat-gui](./public/vue-dat-gui.png)
 
 > A Vue.js port of the popular [dat.GUI](https://github.com/dataarts/dat.gui) library.
@@ -5,13 +7,13 @@
 This is a lightwieght graphical user interface to change variables in Javascript.
 Useful for all your demo or experiment code.
 
-## DEMO
+## DEMO ✨
 
 Feel free to check out the [demo page](https://cyrilf.github.io/vue-dat-gui/).
 
 ---
 
-## INSTALL
+## INSTALL 💻
 
 ### Option 1 - Install from NPM
 
@@ -23,7 +25,7 @@ Then the usage is:
 
 ```js
 import Vue from 'vue'
-import DatGui from 'vue-dat-gui'
+import DatGui from '@cyrilf/vue-dat-gui'
 
 Vue.use(DatGui)
 ```
@@ -34,12 +36,12 @@ Vue.use(DatGui)
 In your head tag, include the following code:
 ```html
 <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
-<script src="https://github.com/cyrilf/vue-dat-gui/tree/master/dist/vue-dat-gui.umd.min.js"></script>
+<script src="https://unpkg.com/@cyrilf/vue-dat-gui@latest/dist/vue-dat-gui.umd.min.js"></script>
 ```
 
 ----
 
-## Usage
+## USAGE 🖱
 
 You can always refer to the [public/index.html](https://github.com/cyrilf/vue-dat-gui/tree/master/public/index.html) file for the most up-to-date example of how to use it. The [demo page](https://cyrilf.github.io/vue-dat-gui/) is also available.
 
@@ -105,7 +107,10 @@ new Vue({
 ----
 
 
-## Build this library manually
+## CONTRIBUTE 🖋
+
+Here are the different options:
+
 ```
 npm install
 ```
@@ -122,10 +127,14 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+This project was generated using `vue-cli`.
+
+Feel free to open any Pull Request/Issues.
+
 
 ----
 
-## Thanks
+## THANKS 👌
 
 - [dat.GUI](https://github.com/dataarts/dat.gui) for initial project
 - [joeslyon/vue-dat-gui](https://github.com/joeslyon/vue-dat-gui) for inspiration
