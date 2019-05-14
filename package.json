@@ -1,12 +1,12 @@
 {
-  "name": "vue-dat-gui",
+  "name": "@cyrilf/vue-dat-gui",
   "version": "0.2.0",
   "description": "A Vue version of the dat.GUI library",
   "main": "./dist/vue-dat-gui.common.js",
   "license": "MIT",
   "scripts": {
     "build": "npm run build-lib && npm run copy-demo",
-    "build-lib": "vue-cli-service build --target lib src/main.js",
+    "build-lib": "vue-cli-service build --name vue-dat-gui --target lib src/main.js",
     "copy-demo": "node ./scripts/copyDemo",
     "lint": "vue-cli-service lint",
     "prepare": "npm run lint && npm run build"
