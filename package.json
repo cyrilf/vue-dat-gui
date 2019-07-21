@@ -1,6 +1,6 @@
 {
   "name": "@cyrilf/vue-dat-gui",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A Vue version of the dat.GUI library",
   "main": "./dist/vue-dat-gui.common.js",
   "license": "MIT",
