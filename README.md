@@ -9,7 +9,13 @@ Useful for all your demo or experiment code.
 
 ## DEMO ✨
 
-Feel free to check out the [demo page](https://cyrilf.github.io/vue-dat-gui/).
+Check out the [demo page](https://cyrilf.github.io/vue-dat-gui/).
+
+### Used by:
+
+- [cyrilf/microbios](https://microbios.cyrilf.com/): Cellular automata simulation / [Github](https://github.com/cyrilf/microbios)
+- ...
+- _Feel free to submit a PR to add your website._
 
 ---
 
@@ -73,7 +79,7 @@ In your javascript:
 
 ```js
 import Vue from 'vue'
-import DatGui from 'vue-dat-gui'
+import DatGui from '@cyrilf/vue-dat-gui'
 
 Vue.use(DatGui)
 
