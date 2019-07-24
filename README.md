@@ -55,7 +55,7 @@ In your view:
 
 ```html
 <div class="app">
-  <dat-gui closeText="Close controls" openText="Open controls">
+  <dat-gui closeText="Close controls" openText="Open controls" closePosition="bottom">
     <dat-color v-model="background" label="Background"/>
     <dat-number v-model="titleFontSize" label="Title font-size"/>
     <dat-string v-model="title" label="Title"/>

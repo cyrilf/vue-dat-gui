@@ -7104,14 +7104,17 @@ var string_component = normalizeComponent(
 )
 
 /* harmony default export */ var string = (string_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e4d60bf0-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/gui.vue?vue&type=template&id=6322273b&
-var guivue_type_template_id_6322273b_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:['vue-dat-gui', {'closed': _vm.isClosed}]},[_c('div',{staticClass:"group group--main"},[_c('ul',[_vm._t("default")],2),_c('div',{staticClass:"toggle-button",on:{"click":_vm.toggleOpen}},[_vm._v(_vm._s(_vm.title))])])])}
-var guivue_type_template_id_6322273b_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e4d60bf0-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/gui.vue?vue&type=template&id=b2bc7d06&
+var guivue_type_template_id_b2bc7d06_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:['vue-dat-gui', {'closed': _vm.isClosed}]},[_c('div',{staticClass:"group group--main"},[(_vm.closePosition === 'top')?_c('div',{staticClass:"toggle-button",on:{"click":_vm.toggleOpen}},[_vm._v(_vm._s(_vm.title))]):_vm._e(),_c('ul',[_vm._t("default")],2),(_vm.closePosition === 'bottom')?_c('div',{staticClass:"toggle-button",on:{"click":_vm.toggleOpen}},[_vm._v("\n      "+_vm._s(_vm.title)+"\n    ")]):_vm._e()])])}
+var guivue_type_template_id_b2bc7d06_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/gui.vue?vue&type=template&id=6322273b&
+// CONCATENATED MODULE: ./src/components/gui.vue?vue&type=template&id=b2bc7d06&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/gui.vue?vue&type=script&lang=js&
+//
+//
+//
 //
 //
 //
@@ -7133,6 +7136,11 @@ var guivue_type_template_id_6322273b_staticRenderFns = []
     closeText: {
       type: String,
       default: 'Close Controls'
+    },
+    // define the position of the close button in the menu
+    closePosition: {
+      type: String,
+      default: 'bottom'
     },
     closed: {
       type: Boolean,
@@ -7171,8 +7179,8 @@ var guivue_type_style_index_0_lang_scss_ = __webpack_require__("9260");
 
 var gui_component = normalizeComponent(
   components_guivue_type_script_lang_js_,
-  guivue_type_template_id_6322273b_render,
-  guivue_type_template_id_6322273b_staticRenderFns,
+  guivue_type_template_id_b2bc7d06_render,
+  guivue_type_template_id_b2bc7d06_staticRenderFns,
   false,
   null,
   null,

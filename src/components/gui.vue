@@ -1,10 +1,13 @@
 <template>
   <div :class="['vue-dat-gui', {'closed': isClosed}]">
     <div class="group group--main">
+      <div v-if="closePosition === 'top'" class="toggle-button" @click="toggleOpen">{{title}}</div>
       <ul>
         <slot></slot>
       </ul>
-      <div class='toggle-button' @click="toggleOpen">{{title}}</div>
+      <div v-if="closePosition === 'bottom'" class="toggle-button" @click="toggleOpen">
+        {{title}}
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +23,11 @@ export default {
     closeText: {
       type: String,
       default: 'Close Controls',
+    },
+    // define the position of the close button in the menu
+    closePosition: {
+      type: String,
+      default: 'bottom',
     },
     closed: {
       type: Boolean,
