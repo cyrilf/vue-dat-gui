@@ -1,7 +1,7 @@
 {
   "name": "@cyrilf/vue-dat-gui",
-  "version": "0.3.0",
-  "description": "A Vue version of the dat.GUI library",
+  "version": "0.4.0",
+  "description": "A Vue2 version of the dat.GUI library",
   "main": "./dist/vue-dat-gui.common.js",
   "license": "MIT",
   "scripts": {
@@ -15,6 +15,10 @@
     "type": "git",
     "url": "git@github.com:cyrilf/vue-dat-gui.git"
   },
+  "engines": {
+    "node": ">=20.10.0",
+    "npm": "~10.2.5"
+  },
   "keywords": [
     "vue dat gui",
     "vue",
@@ -26,45 +30,23 @@
   },
   "homepage": "https://github.com/cyrilf/vue-dat-gui#readme",
   "dependencies": {
-    "core-js": "^2.6.5",
+    "core-js": "^3.33.0",
     "lodash.clamp": "^4.0.3",
     "lodash.tonumber": "^4.0.3",
     "v-color": "^1.1.2",
-    "vue": "^2.6.10"
+    "vue": "^2.7.15"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/eslint-parser": "^7.22.15",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
-    "@vue/eslint-config-airbnb": "^4.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^9.0.0",
-    "sass-loader": "^13.2.0",
+    "eslint": "^8.51.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "sass": "^1.61.1",
+    "sass-loader": "^13.3.2",
     "vue-template-compiler": "^2.5.21"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb"
-    ],
-    "rules": {
-      "semi": 0,
-      "no-unused-expressions": [
-        "error",
-        {
-          "allowShortCircuit": true
-        }
-      ]
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
   },
   "eslintIgnore": [
     "dist",
@@ -74,9 +56,5 @@
     "plugins": {
       "autoprefixer": {}
     }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+  }
 }
