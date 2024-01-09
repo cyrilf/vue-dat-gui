@@ -8,7 +8,7 @@
     "docs:serve": "vitepress serve docs"
   },
   "peerDependencies": {
-    "vue": "^3.3.4"
+    "vue": "^3.4.7"
   },
   "devDependencies": {
     "@types/node": "^20.10.7",

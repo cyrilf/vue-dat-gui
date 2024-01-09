@@ -8,7 +8,7 @@ module.exports = defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "vue-dat-gui",
-      formats: ["es"], // adding 'umd' requires globals set to every external module
+      formats: ["es", "umd"], // adding 'umd' requires globals set to every external module
       fileName: (format) => `vue-dat-gui.${format}.js`,
     },
     rollupOptions: {

@@ -19,6 +19,7 @@ module.exports = {
           { text: "Component A", link: "/components/component-a" },
           { text: "Component B", link: "/components/component-b" },
           { text: "DatBoolean", link: "/components/dat-boolean" },
+          { text: "DatGui", link: "/components/dat-gui" },
         ],
       },
     ],
@@ -29,6 +30,11 @@ module.exports = {
         "vue-dat-gui": path.resolve(__dirname, "../../src"),
       },
       dedupe: ["vue"], // avoid error when using dependencies that also use Vue
+    },
+  },
+  vue: {
+    script: {
+      defineModel: true,
     },
   },
 };
