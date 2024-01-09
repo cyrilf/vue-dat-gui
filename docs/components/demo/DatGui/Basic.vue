@@ -69,8 +69,8 @@ const nextPicture = () => {
       openText="Open controls"
       closePosition="bottom"
     >
-      <!-- <DatColor v-model="background" label="Background" />
-    <DatColor v-model="titleColor" label="Title Color" /> -->
+      <DatColor v-model="background" label="Background" />
+      <DatColor v-model="titleColor" label="Title Color" />
       <DatNumber v-model="titleFontSize" label="Title font-size" />
       <DatString v-model="title" label="Title" />
       <DatButton @click="triggerAlert" label="Trigger alert" />
@@ -107,7 +107,7 @@ const nextPicture = () => {
             :step="1"
             label="Spread radius"
           />
-          <!-- <DatColor v-model="boxShadow.color" label="Color" /> -->
+          <DatColor v-model="boxShadow.color" label="Color" />
         </DatFolder>
       </DatFolder>
     </DatGui>

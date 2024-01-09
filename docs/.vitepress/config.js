@@ -16,8 +16,6 @@ module.exports = {
       {
         text: "Components",
         children: [
-          { text: "Component A", link: "/components/component-a" },
-          { text: "Component B", link: "/components/component-b" },
           { text: "DatBoolean", link: "/components/dat-boolean" },
           { text: "DatGui", link: "/components/dat-gui" },
         ],

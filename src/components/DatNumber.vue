@@ -23,10 +23,10 @@ let maxValue =
   typeof props.max === "number" ? props.max : Number.POSITIVE_INFINITY;
 if (minValue > maxValue) {
   [minValue, maxValue] = [maxValue, minValue];
-  import.meta.env.DEV &&
-    console.warn(
-      "vue-dat-gui: You are using a dat-number with a min prop higher than the max prop"
-    );
+  // import.meta.env.DEV &&
+  //   console.warn(
+  //     "vue-dat-gui: You are using a dat-number with a min prop higher than the max prop"
+  //   );
 }
 
 const hasSlider = computed(

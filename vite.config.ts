@@ -1,15 +1,15 @@
-const path = require("path");
-const { defineConfig } = require("vite");
+import path from "path";
+import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
-module.exports = defineConfig({
+export default defineConfig({
   plugins: [vue()], // to process SFC
+  define: { "process.env.NODE_ENV": '"production"' },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "vue-dat-gui",
-      formats: ["es", "umd"], // adding 'umd' requires globals set to every external module
-      fileName: (format) => `vue-dat-gui.${format}.js`,
+      fileName: "vue-dat-gui",
     },
     rollupOptions: {
       // external modules won't be bundled into your library
