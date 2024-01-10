@@ -7,6 +7,9 @@
 This is a lightweight graphical user interface to change variables in Javascript.
 Useful for all your demo or experiment code.
 
+> [!WARNING]
+> This version for Vue2 is now DEPRECATED. Please refer to the [main branch](https://github.com/cyrilf/vue-dat-gui/tree/main) for the Vue3 library.
+
 ## DEMO ✨
 
 Check out the [demo page](https://cyrilf.github.io/vue-dat-gui/).
