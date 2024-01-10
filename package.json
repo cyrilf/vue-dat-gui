@@ -1,18 +1,8 @@
 {
-  "name": "vue-dat-gui",
+  "name": "@cyrilf/vue-dat-gui",
+  "description": "A Vue3 port of the popular dat.GUI library",
+  "version": "1.0.0",
   "type": "module",
-  "version": "0.4.0",
-  "files": ["dist"],
-  "main": "./dist/vue-dat-gui.umd.cjs",
-  "module": "./dist/vue-dat-gui.es.js",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/vue-dat-gui.es.js",
-      "require": "./dist/vue-dat-gui.umd.cjs"
-    },
-    "./dist/style.css": "./dist/style.css"
-  },
   "scripts": {
     "build": "vite build && vue-tsc"
   },
@@ -34,6 +24,11 @@
     "type": "git",
     "url": "git@github.com:cyrilf/vue-dat-gui.git"
   },
+  "author": "cyrilf",
+  "homepage": "https://github.com/cyrilf/vue-dat-gui#readme",
+  "bugs": {
+    "url": "https://github.com/cyrilf/vue-dat-gui/issues"
+  },
   "engines": {
     "node": ">=20.10.0",
     "npm": "~10.2.5"
@@ -43,9 +38,13 @@
     "vue",
     "dat.gui"
   ],
-  "author": "cyrilf",
-  "bugs": {
-    "url": "https://github.com/cyrilf/vue-dat-gui/issues"
-  },
-  "homepage": "https://github.com/cyrilf/vue-dat-gui#readme"
+  "files": ["dist"],
+  "main": "./dist/vue-dat-gui.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/vue-dat-gui.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  }
 }

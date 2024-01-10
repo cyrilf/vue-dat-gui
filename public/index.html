@@ -7,9 +7,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="icon" href="favicon.ico">
   <title>vue-dat-gui</title>
-  <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
-  <!-- relative to the dist folder -->
-  <!-- <script src="./vue-dat-gui.umd.cjs"></script> -->
   <link rel="stylesheet" href="./style.css">
   <style>
     body {
@@ -65,7 +62,8 @@
     <strong>We're sorry but vue-dat-gui doesn't work properly without JavaScript enabled. Please enable it to
       continue.</strong>
   </noscript>
-  <div id="app">
+  <div id="app"></div>
+  <script type="x-template" id="vue-dat-gui-demo">
     <div class="full" :style="{ 'background-color': background }">
       <h1 :style="{ color: titleColor, 'font-size': `${titleFontSize}px` }">
         {{ title }}
@@ -75,43 +73,43 @@
         <input v-model="title" class="input-title" />
         <div class="input-note">Showcase of the 2-way data-binding</div>
       </div>
-      <dat-gui closeText="Close controls" openText="Open controls" closePosition="bottom">
-        <dat-color v-model="background" label="Background"></dat-color>
-        <dat-color v-model="titleColor" label="Title Color"></dat-color>
-        <dat-number v-model="titleFontSize" label="Title font-size"></dat-number>
-        <dat-string v-model="title" label="Title"></dat-string>
-        <dat-button @click="triggerAlert" label="Trigger alert"></dat-button>
-        <dat-folder label="Picture">
-          <dat-select v-model="pictureUrl" :items="pictures" label="Picture"></dat-select>
-          <dat-boolean v-model="showPicture" label="Show Picture"></dat-boolean>
-          <dat-button @click="nextPicture" label="Next picture"></dat-button>
-          <dat-folder label="Box shadow">
-            <dat-number v-model="boxShadow.offsetX" :min="-100" :max="100" :step="1" label="Offset X"></dat-number>
-            <dat-number v-model="boxShadow.offsetY" :min="-100" :max="100" :step="1" label="Offset Y"></dat-number>
-            <dat-number v-model="boxShadow.blurRadius" :min="0" :max="100" :step="1" label="Blur radius"></dat-number>
-            <dat-number v-model="boxShadow.spreadRadius" :min="0" :max="30" :step="1"
-              label="Spread radius"></dat-number>
-            <dat-color v-model="boxShadow.color" label="Color"></dat-color>
-          </dat-folder>
-        </dat-folder>
-      </dat-gui>
-      <a class="github" href="https://github.com/cyrilf/vue-dat-gui/blob/master/public/index.html">View on Github</a>
+      <DatGui closeText="Close controls" openText="Open controls" closePosition="bottom">
+        <DatColor v-model="background" label="Background"/>
+        <DatColor v-model="titleColor" label="Title Color"/>
+        <DatNumber v-model="titleFontSize" label="Title font-size"/>
+        <DatString v-model="title" label="Title"/>
+        <DatButton @click="triggerAlert" label="Trigger alert"/>
+        <DatFolder label="Picture">
+          <DatSelect v-model="pictureUrl" :items="pictures" label="Picture"/>
+          <DatBoolean v-model="showPicture" label="Show Picture"/>
+          <DatButton @click="nextPicture" label="Next picture"/>
+          <DatFolder label="Box shadow">
+            <DatNumber v-model="boxShadow.offsetX" :min="-100" :max="100" :step="1" label="Offset X"/>
+            <DatNumber v-model="boxShadow.offsetY" :min="-100" :max="100" :step="1" label="Offset Y"/>
+            <DatNumber v-model="boxShadow.blurRadius" :min="0" :max="100" :step="1" label="Blur radius"/>
+            <DatNumber v-model="boxShadow.spreadRadius" :min="0" :max="30" :step="1"
+              label="Spread radius"/>
+            <DatColor v-model="boxShadow.color" label="Color"/>
+          </DatFolder>
+        </DatFolder>
+      </DatGui>
+      <a class="github" href="https://github.com/cyrilf/vue-dat-gui/blob/main/public/index.html">View on Github</a>
     </div>
-  </div>
+  </script>
   <script type="importmap">
     {
       "imports": {
         "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",
-        "vue-dat-gui": "./vue-dat-gui.js"
+        "@cyrilf/vue-dat-gui": "./vue-dat-gui.js"
       }
     }
   </script>
   <script type="module" lang="ts">
-    // const { createApp, computed, ref } = Vue;
-    import { createApp, computed, ref } from 'vue'
-    import VueDatGui from 'vue-dat-gui'
+    import { createApp, computed, ref } from "vue";
+    import VueDatGui from '@cyrilf/vue-dat-gui';
 
     createApp({
+      template: '#vue-dat-gui-demo',
       setup() {
         const pictures = [
           {
@@ -136,7 +134,6 @@
         const titleFontSize = ref(75);
         const title = ref("vue-dat-gui");
         const showPicture = ref(true);
-        let pictureUrl = ref(pictures[0].value);
         const boxShadow = ref({
           offsetX: 27,
           offsetY: 27,
@@ -153,6 +150,8 @@
         });
 
         const triggerAlert = () => alert("Yeah, you pressed it!");
+
+        let pictureUrl = ref(pictures[0].value);
         const nextPicture = () => {
           const currentIndex = pictures.findIndex(
             (picture) => picture.value === pictureUrl.value
@@ -160,6 +159,7 @@
           const nextIndex = (currentIndex + 1) % pictures.length;
           pictureUrl.value = pictures[nextIndex].value;
         };
+
         return {
           pictures,
           background,
