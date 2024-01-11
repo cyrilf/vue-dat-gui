@@ -32,13 +32,15 @@ Then the usage is:
 ```js
 import { createApp } from "vue";
 import VueDatGui from "@cyrilf/vue-dat-gui";
-import "@cyrilf/vue-dat-gui/style.css";
+import "@cyrilf/vue-dat-gui/dist/style.css";
 
-createApp({
-  /*your code*/
-})
-  .use(VueDatGui)
-  .mount("#app");
+/* your code */
+// ...
+
+const app = createApp(App);
+app.use(VueDatGui);
+
+app.mount("#app");
 ```
 
 ### Option 2 - Instal via CDN file
