@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+### LEGACY DEPLOY SCRIPT
+# Now using a Github Action
+
 # abort on errors
 set -e
 
