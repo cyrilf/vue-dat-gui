@@ -4,21 +4,21 @@ interface Props {
   closed?: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   label: "",
   closed: false,
 });
-const model = defineModel({ type: Boolean });
+const isClosed = defineModel({ type: Boolean });
 const handleClick = () => {
-  model.value = !model.value;
+  isClosed.value = !isClosed.value;
 };
 </script>
 
 <template>
-  <li :class="['folder', { closed: model }]">
+  <li :class="['folder', { closed: isClosed }]">
     <div ref="label" class="group">
       <div class="text" @click="handleClick">
-        {{ label }}
+        <div class="symbol">{{ isClosed ? "▼" : "▲" }} {{ label }}</div>
       </div>
       <ul>
         <slot></slot>
@@ -27,29 +27,31 @@ const handleClick = () => {
   </li>
 </template>
 
-<style lang="scss">
-@import "../assets/main.scss";
-
-.vue-dat-gui li.folder {
+<style lang="css" scoped>
+.folder {
   .text {
     font-weight: bold;
+    height: var(--row-height);
     user-select: none;
     cursor: pointer;
-    padding: 5px 5px 5px 16px;
-    background: $folder-open;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid var(--light-background-color);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .symbol {
+      position: absolute;
+      left: 10px;
+    }
   }
 
   ul {
-    margin-left: $nest-margin;
-    width: calc(100% - #{$nest-margin});
+    margin-left: var(--nest-margin);
+    width: calc(100% - var(--nest-margin));
   }
 
   &.closed {
-    .title {
-      background: $folder-closed;
-    }
     ul {
       display: none;
     }

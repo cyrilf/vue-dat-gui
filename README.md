@@ -32,6 +32,7 @@ Then the usage is:
 ```js
 import { createApp } from "vue";
 import VueDatGui from "@cyrilf/vue-dat-gui";
+import "@cyrilf/vue-dat-gui/style.css";
 
 createApp({
   /*your code*/
@@ -45,6 +46,10 @@ createApp({
 In your head tag, include the following code:
 
 ```html
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@cyrilf/vue-dat-gui@latest/dist/style.css"
+/>
 <script type="module" lang="ts">
   import {
     createApp,

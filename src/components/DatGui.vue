@@ -30,6 +30,7 @@ const handleClick = () => {
       <div
         v-if="closePosition === 'top'"
         class="toggle-button"
+        role="button"
         @click="handleClick"
       >
         {{ title }}
@@ -40,6 +41,7 @@ const handleClick = () => {
       <div
         v-if="closePosition === 'bottom'"
         class="toggle-button"
+        role="button"
         @click="handleClick"
       >
         {{ title }}
@@ -48,18 +50,37 @@ const handleClick = () => {
   </div>
 </template>
 
-<style lang="scss">
-@import "../assets/main.scss";
+<style lang="css">
+.vue-dat-gui {
+  --color: #eee;
+  --background-color: #1a1a1a;
+  --light-background-color: #272727;
+  --ligther-background-color: #3c3c3c;
 
+  --number-color: #2fa1d6;
+  --boolean-color: #806787;
+  --string-color: #1ed36f;
+  --button-color: #e61d5f;
+  --select-color: #f4d450;
+
+  --border-left-size: 5px;
+
+  --nest-margin: 4px;
+  --row-height: 27px;
+  --z-index: 9000;
+}
+</style>
+
+<style lang="css">
 .vue-dat-gui {
   position: fixed;
   top: 0;
   right: 20px;
   width: 245px;
-  font-size: 12px;
+  font-size: 0.7rem;
   font-family: sans-serif;
-  color: $color;
-  z-index: $z-index;
+  color: var(--color);
+  z-index: var(--z-index);
 
   &.closed {
     ul {
@@ -68,13 +89,14 @@ const handleClick = () => {
   }
 
   .toggle-button {
-    text-align: center;
-    line-height: $button-height - 1;
-    height: $button-height;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
     cursor: pointer;
-    background-color: $background-color;
+    background-color: var(--background-color);
     &:hover {
-      background-color: lighten($background-color, $hover-lighten);
+      background-color: var(--light-background-color);
     }
   }
 
@@ -84,91 +106,72 @@ const handleClick = () => {
       margin: 0;
       padding: 0;
     }
+    background-color: var(--background-color);
     li:not(.folder) {
-      cursor: auto;
-      height: $row-height;
-      line-height: $row-height;
+      height: var(--row-height);
+      line-height: var(--row-height);
       overflow: hidden;
-      padding: 0 4px 0 5px;
-      border-bottom: 1px solid $border-color;
+      padding: 0px 5px 0 10px;
+      border-bottom: 1px solid var(--light-background-color);
     }
+
     &.group--main {
       > ul {
         max-height: 50vh;
         overflow-y: auto;
-
-        &::-webkit-scrollbar {
-          width: 5px;
-          background: $background-color;
-        }
-        &::-webkit-scrollbar-corner {
-          height: 0;
-          display: none;
-        }
-        &::-webkit-scrollbar-thumb {
-          border-radius: 5px;
-          background: lighten($background-color, 30%);
-        }
       }
     }
   }
-
   .control-item {
-    background-color: $background-color;
-    border-left: $border-left-size solid;
+    border-left: var(--border-left-size) solid;
 
     &.boolean {
-      border-left-color: $boolean-color;
+      border-left-color: var(--boolean-color);
       .control {
         text-align: center;
       }
     }
     &.button {
-      border-left-color: $button-color;
+      border-left-color: var(--button-color);
     }
     &.number {
-      border-left-color: $number-color;
+      border-left-color: var(--number-color);
     }
     &.select {
-      border-left-color: $select-color;
+      border-left-color: var(--select-color);
     }
     &.string {
-      border-left-color: $string-color;
+      border-left-color: var(--string-color);
     }
     &.color {
-      border-left-color: $background-color;
+      border-left-color: var(--background-color);
     }
 
     &.boolean,
     &.button {
       &:hover {
-        background: #111;
-      }
-      label {
+        background: var(--light-background-color);
         cursor: pointer;
       }
     }
 
     label {
       display: flex;
-      padding: 0 0 0 5px;
     }
     .label-text {
-      width: 40%;
+      flex: 4;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-align: left;
     }
 
     .control {
-      float: left;
-      width: 60%;
+      flex: 6;
 
       > input[type="text"],
       > input[type="number"] {
-        background: $input-background-color;
-        border: 1px solid $background-color;
+        background: var(--light-background-color);
+        border: 1px solid var(--background-color);
         border-radius: 0;
         width: 100%;
         padding: 4px;
@@ -180,23 +183,19 @@ const handleClick = () => {
         }
 
         &:hover {
-          background: lighten($input-background-color, $hover-lighten);
+          background: var(--ligther-background-color);
         }
         &:focus {
-          background: lighten($input-background-color, $active-lighten);
-          color: #fff;
+          background: var(--ligther-background-color);
+          color: var(--color);
         }
       }
       > input[type="text"] {
-        color: $string-color;
+        color: var(--string-color);
       }
       > input[type="number"] {
-        color: $number-color;
+        color: var(--number-color);
       }
-    }
-    .control:hover .selector,
-    .selector.drag {
-      display: block;
     }
   }
 }

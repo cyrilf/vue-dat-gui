@@ -5,11 +5,11 @@ $hover-lighten: 5%;
 $border-lighten: 5%;
 $active-lighten: 10%;
 
-$number-color: #2FA1D6;
+$number-color: #2fa1d6;
 $boolean-color: #806787;
 $string-color: #1ed36f;
 $button-color: #e61d5f;
-$select-color: #F4D450;
+$select-color: #f4d450;
 
 $border-color: lighten($background-color, $border-lighten);
 $input-background-color: lighten($background-color, 8.5%);
@@ -26,5 +26,5 @@ $button-height: 20px;
 $z-index: 9000;
 
 .w-100 {
-    width: 100%;
+  width: 100%;
 }

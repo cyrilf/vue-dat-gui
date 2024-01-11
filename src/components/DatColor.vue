@@ -55,13 +55,12 @@ const onMouseLeave = () => {
           :style="{ 'background-color': color, color: inputColor }"
           readonly
         />
-        <div v-show="showColorPicker">
+        <div class="color-picker-container">
           <ColorPicker
             v-model:pureColor="color"
             pickerType="chrome"
             is-widget
             disable-history
-            class="color-picker"
           />
         </div>
       </div>
@@ -69,19 +68,21 @@ const onMouseLeave = () => {
   </li>
 </template>
 
-<style lang="scss">
-@import "../assets/main.scss";
-
-.vue-dat-gui .control-item.color {
+<style lang="css" scoped>
+.control-item.color {
   input[type="text"] {
     text-align: center;
   }
 
-  .control > div {
+  .color-picker-container {
+    display: none;
     position: absolute;
-    right: 75px;
-    width: 200px;
+    right: 0;
     z-index: 1;
   }
+}
+
+.control-item.color:hover .color-picker-container {
+  display: block;
 }
 </style>

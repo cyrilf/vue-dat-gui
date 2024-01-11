@@ -6,7 +6,6 @@ interface Props {
   value: number;
   min: number;
   max: number;
-  width?: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {});
@@ -53,22 +52,24 @@ const handleMouseDown = (event: MouseEvent) => {
   <span
     ref="slider"
     class="slider"
-    :style="{ width: `${width}px`, 'background-size': `${bgWidth}% 100%` }"
+    :style="{ 'background-size': `${bgWidth}% 100%` }"
     @mousedown="handleMouseDown"
   />
 </template>
 
-<style lang="scss">
-@import "../assets/main.scss";
-
-.vue-dat-gui .slider {
+<style lang="css" scoped>
+.slider {
   height: 25px;
   display: block;
   position: relative;
   cursor: ew-resize;
-  border: 1px solid $background-color;
-  background-color: $input-background-color;
-  background-image: linear-gradient(90deg, $number-color, $number-color);
+  border: 1px solid var(--background-color);
+  background-color: var(--input-background-color);
+  background-image: linear-gradient(
+    90deg,
+    var(--number-color),
+    var(--number-color)
+  );
   background-size: 0% 100%;
   background-repeat: no-repeat;
 }

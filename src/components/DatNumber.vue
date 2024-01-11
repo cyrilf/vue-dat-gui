@@ -84,8 +84,8 @@ const handleChange = (event: Event) => {
   </li>
 </template>
 
-<style lang="scss">
-.vue-dat-gui .control-item.number {
+<style lang="css" scoped>
+.control-item.number {
   .control {
     display: inline-flex;
 
