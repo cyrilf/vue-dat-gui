@@ -6,9 +6,9 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   label: "",
 });
-const model = defineModel({ type: Boolean });
+const checked = defineModel({ type: Boolean });
 const handleChange = () => {
-  model.value = !model.value;
+  checked.value = !checked.value;
 };
 </script>
 
@@ -17,7 +17,7 @@ const handleChange = () => {
     <label ref="label">
       <span class="label-text">{{ label }}</span>
       <div class="control">
-        <input type="checkbox" :checked="model" @change="handleChange" />
+        <input type="checkbox" :checked="checked" @change="handleChange" />
       </div>
     </label>
   </li>

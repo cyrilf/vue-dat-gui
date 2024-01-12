@@ -3,7 +3,15 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    {
+      name: "watch-public",
+      buildStart() {
+        this.addWatchFile(path.resolve(__dirname, "public/index.html"));
+      },
+    },
+  ],
   define: { "process.env.NODE_ENV": '"production"' },
   build: {
     lib: {

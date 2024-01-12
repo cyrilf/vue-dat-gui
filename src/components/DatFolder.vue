@@ -1,26 +1,27 @@
 <script setup lang="ts">
 interface Props {
   label?: string;
-  closed?: boolean;
 }
 
 withDefaults(defineProps<Props>(), {
   label: "",
-  closed: false,
 });
-const isClosed = defineModel({ type: Boolean });
+const isOpen = defineModel<boolean>({ default: true });
 const handleClick = () => {
-  isClosed.value = !isClosed.value;
+  isOpen.value = !isOpen.value;
 };
 </script>
 
 <template>
-  <li :class="['folder', { closed: isClosed }]">
+  <li class="folder">
     <div ref="label" class="group">
       <div class="text" @click="handleClick">
-        <div class="symbol">{{ isClosed ? "▼" : "▲" }} {{ label }}</div>
+        <div class="text--inner w-100">
+          <span class="symbol">{{ isOpen ? "▼" : "▲" }}</span>
+          {{ label }}
+        </div>
       </div>
-      <ul>
+      <ul v-show="isOpen">
         <slot></slot>
       </ul>
     </div>
@@ -30,6 +31,7 @@ const handleClick = () => {
 <style lang="css" scoped>
 .folder {
   .text {
+    background: var(--darker-background-color);
     font-weight: bold;
     height: var(--row-height);
     user-select: none;
@@ -40,21 +42,21 @@ const handleClick = () => {
     justify-content: center;
     align-items: center;
 
-    .symbol {
+    .text--inner {
       position: absolute;
       left: 10px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .symbol {
+      font-size: 0.5rem;
+      margin-right: 8px;
     }
   }
 
   ul {
     margin-left: var(--nest-margin);
     width: calc(100% - var(--nest-margin));
-  }
-
-  &.closed {
-    ul {
-      display: none;
-    }
   }
 }
 </style>

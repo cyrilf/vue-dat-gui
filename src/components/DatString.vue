@@ -6,7 +6,7 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   label: "",
 });
-const model = defineModel({ type: String, default: "" });
+const string = defineModel({ type: String, default: "" });
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const model = defineModel({ type: String, default: "" });
     <label ref="label">
       <span class="label-text">{{ label }}</span>
       <div class="control">
-        <input type="text" v-model="model" />
+        <input type="text" v-model="string" />
       </div>
     </label>
   </li>

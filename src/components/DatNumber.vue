@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   label: "",
   showSlider: true,
 });
-const model = defineModel({ type: Number, required: true });
+const number = defineModel<number>({ required: true });
 let minValue =
   typeof props.min === "number" ? props.min : Number.NEGATIVE_INFINITY;
 let maxValue =
@@ -43,12 +43,12 @@ const stepValue = computed(() => {
   return 10 ** Math.floor(Math.log(Math.abs(val)) / Math.LN10) / 10;
 });
 
-const sanitizeNumber = (number: number) => {
-  let safeNumber = clamp(number, minValue, maxValue);
+const sanitizeNumber = (rawNumber: number) => {
+  let safeNumber = clamp(rawNumber, minValue, maxValue);
   if (stepValue.value !== 0 && Number.isFinite(stepValue.value)) {
     safeNumber = Math.round(safeNumber / stepValue.value) * stepValue.value;
   }
-  model.value = safeNumber;
+  number.value = safeNumber;
 };
 
 const handleChange = (event: Event) => {
@@ -65,7 +65,7 @@ const handleChange = (event: Event) => {
           v-show="hasSlider"
           :min="minValue"
           :max="maxValue"
-          :value="model"
+          :value="number"
           @updateState="sanitizeNumber"
         >
         </DatSlider>
@@ -76,8 +76,8 @@ const handleChange = (event: Event) => {
           :min="minValue"
           :max="maxValue"
           :step="stepValue"
-          :value="model"
-          @change="handleChange"
+          :value="number"
+          @input="handleChange"
         />
       </div>
     </label>

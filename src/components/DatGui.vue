@@ -5,27 +5,26 @@ interface Props {
   openText?: string;
   closeText?: string;
   closePosition?: "top" | "bottom";
-  closed?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   openText: "Open Controls",
   closeText: "Close Controls",
   closePosition: "bottom",
-  closed: false,
 });
 
-const model = defineModel({ type: Boolean });
+const isOpen = defineModel<boolean>({ default: true });
+
 const title = computed<string>(() =>
-  model.value ? props.openText : props.closeText
+  isOpen.value ? props.closeText : props.openText
 );
 const handleClick = () => {
-  model.value = !model.value;
+  isOpen.value = isOpen.value === true ? false : true;
 };
 </script>
 
 <template>
-  <div :class="['vue-dat-gui', { closed: model }]">
+  <div class="vue-dat-gui">
     <div class="group group--main">
       <div
         v-if="closePosition === 'top'"
@@ -35,7 +34,7 @@ const handleClick = () => {
       >
         {{ title }}
       </div>
-      <ul>
+      <ul v-show="isOpen">
         <slot></slot>
       </ul>
       <div
@@ -53,6 +52,7 @@ const handleClick = () => {
 <style lang="css">
 .vue-dat-gui {
   --color: #eee;
+  --darker-background-color: black;
   --background-color: #1a1a1a;
   --light-background-color: #272727;
   --ligther-background-color: #3c3c3c;
@@ -72,21 +72,19 @@ const handleClick = () => {
 </style>
 
 <style lang="css">
+.w-100 {
+  width: 100%;
+}
+
 .vue-dat-gui {
   position: fixed;
   top: 0;
   right: 20px;
-  width: 245px;
-  font-size: 0.7rem;
+  min-width: 245px;
+  font-size: 0.8rem;
   font-family: sans-serif;
   color: var(--color);
   z-index: var(--z-index);
-
-  &.closed {
-    ul {
-      display: none;
-    }
-  }
 
   .toggle-button {
     display: flex;

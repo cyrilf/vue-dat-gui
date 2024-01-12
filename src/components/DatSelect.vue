@@ -13,7 +13,7 @@ withDefaults(defineProps<Props>(), {
   label: "",
   items: () => [],
 });
-const model = defineModel({ type: String, default: "" });
+const selected = defineModel({ type: String, default: "" });
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const model = defineModel({ type: String, default: "" });
     <label ref="label">
       <span class="label-text">{{ label }}</span>
       <div class="control">
-        <select v-model="model" class="w-100">
+        <select v-model="selected" class="w-100">
           <option v-for="item in items" :key="item.value" :value="item.value">
             {{ item.name }}
           </option>
