@@ -192,6 +192,146 @@ const nextPicture = () => {
 // </script>
 ```
 
+---
+
+## Components
+
+### DatGui
+
+The main menu that wraps all components. (required)
+
+```html
+<DatGui
+  v-model:open="isOpen"
+  open-text="Open Controls"
+  close-text="Close Controls"
+  close-position="bottom"
+>
+  <!-- other components -->
+</DatGui>
+```
+
+| Name             | Type                  | Default            | Description                                |
+| ---------------- | --------------------- | ------------------ | ------------------------------------------ |
+| `v-model:open`   | `Ref<boolean>`        | `true`             | 2ways binding to the open state of the GUI |
+| `open`           | `boolean`             | `true`             | 1way binding to the open state of the GUI  |
+| `@update:open`   | `Function`            | `noop`             | Listener for the open change               |
+| `open-text`      | `boolean`             | `'Open controls'`  | Text for the open button                   |
+| `close-text`     | `boolean`             | `'Close controls'` | Text for the close button                  |
+| `close-position` | `'bottom'` \| `'top'` | `'bottom'`         | Position of the close button               |
+
+### DatBoolean
+
+A checkbox element
+
+```html
+<DatBoolean v-model="isActive" label="Is active?" />
+```
+
+| Name      | Type           | Default | Description        |
+| --------- | -------------- | ------- | ------------------ |
+| `v-model` | `Ref<boolean>` | `false` | 2ways binding      |
+| `label`   | `string`       | `""`    | Text for the label |
+
+### DatButton
+
+A button element
+
+```html
+<DatButton @click="onSurpriseClick" label="Surprise me!" />
+```
+
+| Name     | Type       | Default | Description   |
+| -------- | ---------- | ------- | ------------- |
+| `@click` | `Function` | `noop`  | Click handler |
+| `label`  | `string`   | `""`    | Button text   |
+
+### DatColor
+
+A color-picker element
+
+```html
+<DatColor v-model="mainColor" label="Main color" />
+```
+
+| Name      | Type          | Default | Description        |
+| --------- | ------------- | ------- | ------------------ |
+| `v-model` | `Ref<string>` | `""`    | 2ways binding      |
+| `label`   | `string`      | `""`    | Text for the label |
+
+### DatFolder
+
+A folder element
+
+```html
+<DatFolder v-model:open="isOpen" label="Optional settings">
+  <!-- other components -->
+</DatFolder>
+```
+
+| Name           | Type           | Default | Description                                |
+| -------------- | -------------- | ------- | ------------------------------------------ |
+| `v-model:open` | `Ref<boolean>` | `true`  | 2ways binding to the open state of the GUI |
+| `open`         | `boolean`      | `true`  | 1way binding to the open state of the GUI  |
+| `@update:open` | `Function`     | `noop`  | Listener for the open change               |
+| `label`        | `string`       | `""`    | Text for the folder                        |
+
+### DatNumber
+
+A number input element. If `min` and `max` are specified, then a slider is added.
+
+```html
+<DatNumber
+  v-model="areaWidth"
+  :min="0"
+  :max="1000"
+  :step="5"
+  :showSlider="false"
+  label="Area width"
+/>
+```
+
+| Name      | Type          | Default                    | Description        |
+| --------- | ------------- | -------------------------- | ------------------ |
+| `v-model` | `Ref<number>` | `""`                       | 2ways binding      |
+| `min`     | `number`      | `Number.NEGATIVE_INFINITY` | Minimum value      |
+| `max`     | `number`      | `Number.POSITIVE_INFINITY` | Maximum value      |
+| `step`    | `number`      | `Read note below*`         | Incremental value  |
+| `label`   | `string`      | `""`                       | Text for the label |
+
+**`Note*`**: it's the "order of magnitude of the absolute difference between max and min and returns a power of 10 corresponding to that order of magnitude".
+
+### DatSelect
+
+A select element
+
+```html
+<DatSelect v-model="mainPicture" :items="pictures" label="Main picture" />
+```
+
+```
+Type Item = { name: string; value: string; } | string | number
+```
+
+| Name      | Type                           | Default | Description                |
+| --------- | ------------------------------ | ------- | -------------------------- |
+| `v-model` | `Ref<string>` \| `Ref<number>` | `""`    | 2ways binding              |
+| `items`   | `Item[]`                       | `[]`    | The options for the select |
+| `label`   | `string`                       | `""`    | Text for the label         |
+
+### DatString
+
+A text input element
+
+```html
+<DatString v-model="username" label="Username" />
+```
+
+| Name      | Type          | Default | Description        |
+| --------- | ------------- | ------- | ------------------ |
+| `v-model` | `Ref<string>` | `""`    | 2ways binding      |
+| `label`   | `string`      | `""`    | Text for the label |
+
 ### Deploy
 
 ```

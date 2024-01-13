@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   closePosition: "bottom",
 });
 
-const isOpen = defineModel<boolean>({ default: true });
+const isOpen = defineModel<boolean>("open", { default: true });
 
 const title = computed<string>(() =>
   isOpen.value ? props.closeText : props.openText

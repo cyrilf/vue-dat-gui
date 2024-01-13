@@ -6,7 +6,7 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   label: "",
 });
-const isOpen = defineModel<boolean>({ default: true });
+const isOpen = defineModel<boolean>("open", { default: true });
 const handleClick = () => {
   isOpen.value = !isOpen.value;
 };
@@ -17,7 +17,7 @@ const handleClick = () => {
     <div ref="label" class="group">
       <div class="text" @click="handleClick">
         <div class="text--inner w-100">
-          <span class="symbol">{{ isOpen ? "▼" : "▲" }}</span>
+          <span class="symbol">{{ isOpen ? "▼" : "►" }}</span>
           {{ label }}
         </div>
       </div>
