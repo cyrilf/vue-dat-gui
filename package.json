@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "vite build && vue-tsc",
-    "dev": "concurrently --kill-others 'vite build --watch' 'npx live-server --cors dist'"
+    "publish": "npm run build && npm version patch",
+    "postversion": "git push && git push --tags",
+    "dev": "concurrently 'vite build --watch' 'npx live-server --cors dist'"
   },
   "dependencies": {
     "vue3-colorpicker": "^2.2.3"
