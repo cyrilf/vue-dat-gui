@@ -4,8 +4,9 @@ on:
   push:
     tags:
       - "*"
+
 permissions:
-	id-token: write
+  id-token: write
 
 jobs:
   build:
