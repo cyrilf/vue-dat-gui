@@ -2,10 +2,9 @@
   "name": "@cyrilf/vue-dat-gui",
   "description": "A Vue3 port of the popular dat.GUI library",
   "version": "1.0.7",
-  "type": "module",
   "scripts": {
     "build": "vite build && vue-tsc",
-    "publish": "npm run build && npm version patch",
+    "prepare": "npm run build",
     "postversion": "git push && git push --tags",
     "dev": "concurrently 'vite build --watch' 'npx live-server --cors dist'"
   },
@@ -41,10 +40,11 @@
     "vue",
     "dat.gui"
   ],
+  "main": "./dist/vue-dat-gui.js",
+  "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/vue-dat-gui.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {

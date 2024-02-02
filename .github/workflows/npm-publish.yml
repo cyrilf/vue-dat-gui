@@ -1,13 +1,14 @@
-name: Build and Deploy to Github Pages
+name: Publish to npm
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
+    tags:
+      - "*"
+permissions:
+	id-token: write
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -30,11 +31,22 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          commit_message: ${{ github.event.head_commit.message }}
-          exclude_assets: ".github,vue-dat-gui.png,types/**/*.d.ts"
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+				with:
+					node-version: "20"
+					cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - run: npm publish --provenance
+				env:
+					NODE_AUTH_TOKEN: $

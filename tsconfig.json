@@ -12,6 +12,7 @@
     "lib": ["esnext", "dom"],
     "declaration": true,
     "emitDeclarationOnly": true,
+    "outDir": "dist",
     "declarationDir": "./dist/types",
     "isolatedModules": true,
     "skipLibCheck": true,
@@ -22,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/index.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "src/index.ts"],
   "exclude": ["node_modules"]
 }
