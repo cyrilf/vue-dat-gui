@@ -7,6 +7,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="icon" href="favicon.ico">
   <title>vue-dat-gui</title>
+  <meta name="description"
+    content="A Typescript / Vue 3 port of the popular dat.GUI library, a lightweight graphical user interface for changing variables.">
+  <link rel="preload" fetchpriority="high" as="image"
+    href="https://images.unsplash.com/photo-1516214104703-d870798883c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+    type="image/webp">
   <link rel="stylesheet" href="./style.css">
   <style>
     body {
@@ -38,11 +43,10 @@
     }
 
     .input-note {
-      font-size: 11px;
-      color: #666;
-      font-style: italic;
+      font-size: 1rem;
+      color: #333;
       text-align: center;
-      margin-top: 5px;
+      margin-bottom: 6px;
     }
 
     .github {
@@ -68,11 +72,11 @@
       <h1 :style="{ color: titleColor, 'font-size': `${titleFontSize}px` }">
         {{ title }}
       </h1>
-      <img :src="pictureUrl" alt="vue-dat-gui demo" :style="pictureStyle" v-show="showPicture" />
-      <div>
-        <input v-model="title" class="input-title" />
+      <img :src="pictureUrl" :alt="`A picture of a ${pictureText}`" :style="pictureStyle" v-show="showPicture" width="750" height="500" />
+      <label>
         <div class="input-note">Showcase of the 2-way data-binding</div>
-      </div>
+        <input v-model="title" class="input-title" />
+      </label>
       <DatGui openText="Open controls" closeText="Close controls" closePosition="bottom">
         <DatColor v-model="background" label="Background"/>
         <DatColor v-model="titleColor" label="Title Color"/>
@@ -139,7 +143,7 @@
           offsetY: 27,
           blurRadius: 75,
           spreadRadius: 2,
-          color: "rgba(3, 23, 6, 1)",
+          color: "#031706",
         });
 
         const pictureStyle = computed(() => {
@@ -151,7 +155,7 @@
 
         const triggerAlert = () => alert("Yeah, you pressed it!");
 
-        let pictureUrl = ref(pictures[0].value);
+        const pictureUrl = ref(pictures[0].value);
         const nextPicture = () => {
           const currentIndex = pictures.findIndex(
             (picture) => picture.value === pictureUrl.value
@@ -160,6 +164,8 @@
           pictureUrl.value = pictures[nextIndex].value;
         };
 
+        const pictureText = computed(() => pictures.find(p => p.value === pictureUrl.value)?.name)
+
         return {
           pictures,
           background,
@@ -167,8 +173,10 @@
           titleFontSize,
           title,
           showPicture,
-          pictureUrl, boxShadow,
+          pictureUrl,
+          pictureText,
           pictureStyle,
+          boxShadow,
           triggerAlert,
           nextPicture
         }
