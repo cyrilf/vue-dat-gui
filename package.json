@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:cyrilf/vue-dat-gui.git"
+    "url": "git+ssh://git@github.com/cyrilf/vue-dat-gui.git"
   },
   "author": "cyrilf",
   "homepage": "https://github.com/cyrilf/vue-dat-gui#readme",
