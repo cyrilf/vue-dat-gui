@@ -30,7 +30,9 @@ const handleClick = () => {
         v-if="closePosition === 'top'"
         class="toggle-button"
         role="button"
+        tabindex="0"
         @click="handleClick"
+        @keydown.space.enter="handleClick"
       >
         {{ title }}
       </div>
@@ -41,7 +43,9 @@ const handleClick = () => {
         v-if="closePosition === 'bottom'"
         class="toggle-button"
         role="button"
+        tabindex="0"
         @click="handleClick"
+        @keydown.space.enter="handleClick"
       >
         {{ title }}
       </div>
@@ -93,8 +97,12 @@ const handleClick = () => {
     height: 25px;
     cursor: pointer;
     background-color: var(--background-color);
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: var(--light-background-color);
+    }
+    &:focus {
+      border: 2px solid white;
     }
   }
 
