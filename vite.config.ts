@@ -19,9 +19,6 @@ export default defineConfig({
     },
   },
   define: { "process.env.NODE_ENV": '"production"' },
-  server: {
-    open: false,
-  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),

@@ -32,7 +32,7 @@ const handleClick = () => {
         role="button"
         tabindex="0"
         @click="handleClick"
-        @keydown.space.enter="handleClick"
+        @keydown.space.enter.prevent="handleClick"
       >
         {{ title }}
       </div>
@@ -45,7 +45,7 @@ const handleClick = () => {
         role="button"
         tabindex="0"
         @click="handleClick"
-        @keydown.space.enter="handleClick"
+        @keydown.space.enter.prevent="handleClick"
       >
         {{ title }}
       </div>
@@ -97,12 +97,16 @@ const handleClick = () => {
     height: 25px;
     cursor: pointer;
     background-color: var(--background-color);
+    box-sizing: border-box;
+
     &:hover,
     &:focus {
       background-color: var(--light-background-color);
     }
-    &:focus {
-      border: 2px solid white;
+    &:focus,
+    &:focus-visible {
+      border: 2px solid var(--number-color);
+      outline: none;
     }
   }
 
