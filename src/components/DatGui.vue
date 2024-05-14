@@ -135,6 +135,11 @@ const handleClick = () => {
   .control-item {
     border-left: var(--border-left-size) solid;
 
+    &.disabled {
+      background-color: gray;
+      opacity: 0.5;
+    }
+
     &.boolean {
       border-left-color: var(--boolean-color);
       .control {

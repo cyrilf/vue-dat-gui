@@ -10,11 +10,16 @@ interface Props {
   min?: number;
   max?: number;
   step?: number;
+  disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   label: "",
   showSlider: true,
+  disabled: false,
+});
+const watchDisabled = computed(() => {
+  return props.disabled;
 });
 const number = defineModel<number>({ required: true });
 let minValue =
@@ -53,7 +58,7 @@ const handleChange = (event: Event) => {
 </script>
 
 <template>
-  <li class="control-item number">
+  <li class="control-item number" :class="{ disabled: watchDisabled }">
     <label ref="label">
       <span class="label-text">{{ label }}</span>
       <div class="control">
@@ -74,6 +79,7 @@ const handleChange = (event: Event) => {
           :step="stepValue"
           :value="number"
           @input="handleChange"
+          :disabled="watchDisabled"
         />
       </div>
     </label>

@@ -5,10 +5,15 @@ import "vue3-colorpicker/style.css";
 
 interface Props {
   label?: string;
+  disabled?: boolean;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   label: "",
+  disabled: false,
+});
+const watchDisabled = computed(() => {
+  return props.disabled;
 });
 const color = defineModel({ type: String, required: true });
 let showColorPicker = ref(false);
@@ -43,6 +48,7 @@ const onMouseLeave = () => {
 <template>
   <li
     class="control-item color"
+    :class="{ disabled: watchDisabled }"
     :style="{ 'border-left-color': color }"
     @mouseleave="onMouseLeave"
   >
@@ -53,6 +59,7 @@ const onMouseLeave = () => {
           type="text"
           :value="color"
           :style="{ 'background-color': color, color: inputColor }"
+          :disabled="watchDisabled"
           readonly
         />
         <div class="color-picker-container">
