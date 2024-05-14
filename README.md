@@ -228,10 +228,11 @@ A checkbox element
 <DatBoolean v-model="isActive" label="Is active?" />
 ```
 
-| Name      | Type           | Default | Description        |
-| --------- | -------------- | ------- | ------------------ |
-| `v-model` | `Ref<boolean>` | `false` | 2ways binding      |
-| `label`   | `string`       | `""`    | Text for the label |
+| Name       | Type           | Default | Description        |
+| ---------- | -------------- | ------- | ------------------ |
+| `v-model`  | `Ref<boolean>` | `false` | 2ways binding      |
+| `label`    | `string`       | `""`    | Text for the label |
+| `disabled` | `boolean`      | `false` | disabled           |
 
 ### DatButton
 
@@ -241,10 +242,11 @@ A button element
 <DatButton @click="onSurpriseClick" label="Surprise me!" />
 ```
 
-| Name     | Type       | Default | Description   |
-| -------- | ---------- | ------- | ------------- |
-| `@click` | `Function` | `noop`  | Click handler |
-| `label`  | `string`   | `""`    | Button text   |
+| Name       | Type       | Default | Description   |
+| ---------- | ---------- | ------- | ------------- |
+| `@click`   | `Function` | `noop`  | Click handler |
+| `label`    | `string`   | `""`    | Button text   |
+| `disabled` | `boolean`  | `false` | disabled      |
 
 ### DatColor
 
@@ -254,10 +256,11 @@ A color-picker element
 <DatColor v-model="mainColor" label="Main color" />
 ```
 
-| Name      | Type          | Default | Description        |
-| --------- | ------------- | ------- | ------------------ |
-| `v-model` | `Ref<string>` | `""`    | 2ways binding      |
-| `label`   | `string`      | `""`    | Text for the label |
+| Name       | Type          | Default | Description        |
+| ---------- | ------------- | ------- | ------------------ |
+| `v-model`  | `Ref<string>` | `""`    | 2ways binding      |
+| `label`    | `string`      | `""`    | Text for the label |
+| `disabled` | `boolean`     | `false` | disabled           |
 
 ### DatFolder
 
@@ -291,13 +294,14 @@ A number input element. If `min` and `max` are specified, then a slider is added
 />
 ```
 
-| Name      | Type          | Default                    | Description        |
-| --------- | ------------- | -------------------------- | ------------------ |
-| `v-model` | `Ref<number>` | `""`                       | 2ways binding      |
-| `min`     | `number`      | `Number.NEGATIVE_INFINITY` | Minimum value      |
-| `max`     | `number`      | `Number.POSITIVE_INFINITY` | Maximum value      |
-| `step`    | `number`      | `Read note below*`         | Incremental value  |
-| `label`   | `string`      | `""`                       | Text for the label |
+| Name       | Type          | Default                    | Description        |
+| ---------- | ------------- | -------------------------- | ------------------ |
+| `v-model`  | `Ref<number>` | `""`                       | 2ways binding      |
+| `min`      | `number`      | `Number.NEGATIVE_INFINITY` | Minimum value      |
+| `max`      | `number`      | `Number.POSITIVE_INFINITY` | Maximum value      |
+| `step`     | `number`      | `Read note below*`         | Incremental value  |
+| `label`    | `string`      | `""`                       | Text for the label |
+| `disabled` | `boolean`     | `false`                    | disabled           |
 
 **`Note*`**: it's the "order of magnitude of the absolute difference between max and min and returns a power of 10 corresponding to that order of magnitude".
 
@@ -313,11 +317,12 @@ A select element
 Type Item = { name: string; value: string; } | string | number
 ```
 
-| Name      | Type                           | Default | Description                |
-| --------- | ------------------------------ | ------- | -------------------------- |
-| `v-model` | `Ref<string>` \| `Ref<number>` | `""`    | 2ways binding              |
-| `items`   | `Item[]`                       | `[]`    | The options for the select |
-| `label`   | `string`                       | `""`    | Text for the label         |
+| Name       | Type                           | Default | Description                |
+| ---------- | ------------------------------ | ------- | -------------------------- |
+| `v-model`  | `Ref<string>` \| `Ref<number>` | `""`    | 2ways binding              |
+| `items`    | `Item[]`                       | `[]`    | The options for the select |
+| `label`    | `string`                       | `""`    | Text for the label         |
+| `disabled` | `boolean`                      | `false` | disabled                   |
 
 ### DatString
 
@@ -327,10 +332,11 @@ A text input element
 <DatString v-model="username" label="Username" />
 ```
 
-| Name      | Type          | Default | Description        |
-| --------- | ------------- | ------- | ------------------ |
-| `v-model` | `Ref<string>` | `""`    | 2ways binding      |
-| `label`   | `string`      | `""`    | Text for the label |
+| Name       | Type          | Default | Description        |
+| ---------- | ------------- | ------- | ------------------ |
+| `v-model`  | `Ref<string>` | `""`    | 2ways binding      |
+| `label`    | `string`      | `""`    | Text for the label |
+| `disabled` | `boolean`     | `false` | disabled           |
 
 ### Deploy
 
