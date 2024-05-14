@@ -106,12 +106,16 @@ In your view:
       <DatSelect v-model="pictureUrl" :items="pictures" label="Picture" />
       <DatBoolean v-model="showPicture" label="Show Picture" />
       <DatFolder label="Box shadow">
+        <DatBoolean
+          v-model="boxShadow.disabled"
+          :label="boxShadow.disabled ? 'Enable options' : 'Disable options' "/>
         <DatNumber
           v-model="boxShadow.offsetX"
           :min="-100"
           :max="100"
           :step="1"
           label="Offset X"
+          :disabled="boxShadow.disabled"
         />
         <DatNumber
           v-model="boxShadow.offsetY"
@@ -119,6 +123,7 @@ In your view:
           :max="100"
           :step="1"
           label="Offset Y"
+          :disabled="boxShadow.disabled"
         />
         <DatNumber
           v-model="boxShadow.blurRadius"
@@ -126,9 +131,10 @@ In your view:
           :max="100"
           :step="1"
           label="Blur radius"
+          :disabled="boxShadow.disabled"
         />
-        <DatNumber v-model="boxShadow.spreadRadius" label="Spread radius" />
-        <DatColor v-model="boxShadow.color" label="Color" />
+        <DatNumber v-model="boxShadow.spreadRadius" label="Spread radius" :disabled="boxShadow.disabled" />
+        <DatColor v-model="boxShadow.color" label="Color" :disabled="boxShadow.disabled" />
       </DatFolder>
     </DatFolder>
   </DatGui>
@@ -165,6 +171,7 @@ const titleFontSize = ref(75);
 const title = ref("vue-dat-gui");
 const showPicture = ref(true);
 const boxShadow = ref({
+  disabled: false,
   offsetX: 27,
   offsetY: 27,
   blurRadius: 75,
