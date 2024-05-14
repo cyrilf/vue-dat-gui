@@ -10,22 +10,19 @@ const props = withDefaults(defineProps<Props>(), {
   label: "",
   disabled: false,
 });
-const watchDisabled = computed(() => {
-  return props.disabled;
-});
+const isDisabled = computed(() => props.disabled);
+
 const emit = defineEmits<{
   click: [value: MouseEvent];
 }>();
 const handleClick = (event: MouseEvent) => {
-  if (watchDisabled.value) {
-    return;
-    emit("click", event);
-  }
+  if (isDisabled.value) return;
+  emit("click", event);
 };
 </script>
 
 <template>
-  <li class="control-item button" :class="{ disabled: watchDisabled }">
+  <li class="control-item button" :class="{ disabled: isDisabled }">
     <label class="w-100" ref="label" @click="handleClick">
       {{ label }}
     </label>

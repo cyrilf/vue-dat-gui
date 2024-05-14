@@ -10,20 +10,15 @@ const props = withDefaults(defineProps<Props>(), {
   label: "",
   disabled: false,
 });
-const watchDisabled = computed(() => {
-  return props.disabled;
-});
+const isDisabled = computed(() => props.disabled);
 const checked = defineModel({ type: Boolean });
 const handleChange = () => {
-  if (watchDisabled.value) {
-    return;
-  }
   checked.value = !checked.value;
 };
 </script>
 
 <template>
-  <li class="control-item boolean" :class="{ disabled: watchDisabled }">
+  <li class="control-item boolean" :class="{ disabled: isDisabled }">
     <label ref="label">
       <span class="label-text">{{ label }}</span>
       <div class="control">
@@ -31,7 +26,7 @@ const handleChange = () => {
           type="checkbox"
           :checked="checked"
           @change="handleChange"
-          :disabled="watchDisabled"
+          :disabled="isDisabled"
         />
       </div>
     </label>

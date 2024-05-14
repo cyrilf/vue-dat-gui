@@ -138,6 +138,7 @@ const handleClick = () => {
     &.disabled {
       background-color: gray;
       opacity: 0.5;
+      pointer-events: none;
     }
 
     &.boolean {

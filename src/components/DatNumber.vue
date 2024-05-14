@@ -18,9 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
   showSlider: true,
   disabled: false,
 });
-const watchDisabled = computed(() => {
-  return props.disabled;
-});
+const isDisabled = computed(() => props.disabled);
 const number = defineModel<number>({ required: true });
 let minValue =
   typeof props.min === "number" ? props.min : Number.NEGATIVE_INFINITY;
@@ -58,7 +56,7 @@ const handleChange = (event: Event) => {
 </script>
 
 <template>
-  <li class="control-item number" :class="{ disabled: watchDisabled }">
+  <li class="control-item number" :class="{ disabled: isDisabled }">
     <label ref="label">
       <span class="label-text">{{ label }}</span>
       <div class="control">
@@ -79,7 +77,7 @@ const handleChange = (event: Event) => {
           :step="stepValue"
           :value="number"
           @input="handleChange"
-          :disabled="watchDisabled"
+          :disabled="isDisabled"
         />
       </div>
     </label>

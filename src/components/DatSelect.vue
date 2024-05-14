@@ -17,9 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   items: () => [],
   disabled: false,
 });
-const watchDisabled = computed(() => {
-  return props.disabled;
-});
+const isDisabled = computed(() => props.disabled);
 const selected = defineModel({ type: String, default: "" });
 const localItems = computed(() =>
   props.items.map((item) =>
@@ -31,11 +29,11 @@ const localItems = computed(() =>
 </script>
 
 <template>
-  <li class="control-item select" :class="{ disabled: watchDisabled }">
+  <li class="control-item select" :class="{ disabled: isDisabled }">
     <label ref="label">
       <span class="label-text">{{ label }}</span>
       <div class="control">
-        <select v-model="selected" class="w-100" :disabled="watchDisabled">
+        <select v-model="selected" class="w-100" :disabled="isDisabled">
           <option
             v-for="item in localItems"
             :key="item.value"
